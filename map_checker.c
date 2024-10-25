@@ -6,7 +6,7 @@
 /*   By: nilamber <nilamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 22:19:26 by nilamber          #+#    #+#             */
-/*   Updated: 2024/10/23 21:59:40 by nilamber         ###   ########.fr       */
+/*   Updated: 2024/10/25 01:14:06 by nilamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,11 +116,11 @@ int	is_there_a_map_issue(char *name, char ***map, int height)
 	else if (map == NULL && ++issue)
 		perror("encountered an error while allocating the map : ");
 	else if (!is_every_char_compliant(*map, height) && ++issue)
-		perror("map is non-compilant\n");
+		write(1, "map is non-compilant\n", 21);
 	else if (!is_the_map_rectangular(*map, height) && ++issue)
-		perror("map is not rectangular\n");
+		write(1, "map is not rectangular\n", 23);
 	else if (!is_the_map_doable(*map, height) && ++issue)
-		perror("map does not allow the player to finish the game\n");
+		write(1, "the player can't finish the game on this map\n", 49);
 	close(map_fd);
 	if (map != NULL && issue)
 		map_liberator(*map, height);
