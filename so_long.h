@@ -29,4 +29,9 @@ int	is_there_a_map_issue(char *name, char ***map, int height);
 char	*ft_gnl(int fd);
 char	**arrstr_cpy(char **map, int height);
 char	*ft_strjoin(char *start, char *end);
+typedef	struct	s_pos
+{
+	int	h;
+	int	w;
+} t_pos;
 #endif
