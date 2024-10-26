@@ -13,7 +13,7 @@
 #include "so_long.h"
 #include "mlx/mlx.h"
 
-void	mlx_handler(t_game game)
+void	mlx_handler(t_game *game)
 {
 	mlx_loop(game->mlx_dspl);
 }

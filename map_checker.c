@@ -120,7 +120,7 @@ int	is_there_a_map_issue(char *name, char ***map, int height)
 	else if (!is_the_map_rectangular(*map, height) && ++issue)
 		write(1, "map is not rectangular\n", 23);
 	else if (!is_the_map_doable(*map, height) && ++issue)
-		write(1, "the player can't finish the game on this map\n", 49);
+		write(1, "the player can't finish the game on this map\n", 45);
 	close(map_fd);
 	if (map != NULL && issue)
 		map_liberator(*map, height);

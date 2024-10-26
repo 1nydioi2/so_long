@@ -73,4 +73,5 @@ char	*ft_strjoin(char *start, char *end);
 void	game_initializer(t_game *game, char **map, int height);
 int	mlx_starter(t_game *game);
 void	mlx_closing(void *mlx_dspl, void *mlx_win);
+void	mlx_handler(t_game *game);
 #endif
