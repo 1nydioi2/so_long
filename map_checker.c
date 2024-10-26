@@ -98,7 +98,7 @@ int	is_the_map_doable(char **map, int height)
 	bo = 0;
 	map_cpy = arrstr_cpy(map, height);
 	res = flood(map_cpy, height, bo);
-	free(map_cpy);
+	map_liberator(map_cpy, height);
 	return (res);
 }
 

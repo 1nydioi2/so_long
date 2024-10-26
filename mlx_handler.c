@@ -32,6 +32,7 @@ int	mlx_closing(int keycode, t_game *game)
 	mlx_destroy_window(game->mlx_dspl, game->mlx_win);
 	map_liberator(game->map, game->height);
 	mlx_destroy_display(game->mlx_dspl);
+	free(game->mlx_dspl);
 	exit(0);
 }
 

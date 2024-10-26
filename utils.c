@@ -103,5 +103,6 @@ char	*ft_strjoin(char *start, char *end)
 		res[j++] = end[i++];
 	res[j] = '\0';
 	free(start);
+	free(end);	
 	return (res);
 }
