@@ -23,7 +23,7 @@ void	map_dater(int data[3], char **map, int height)
 	while (++h < (height - 1)) 
 	{
 		w = 0;
-		while (map[++w + 1])
+		while (map[h][++w + 1])
 		{
 			if (map[h][w] == 'C')
 				data[2]++;

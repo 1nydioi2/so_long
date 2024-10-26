@@ -20,7 +20,7 @@ char	*get_till_nl(char *str)
 	i = 0;
 	while (str[i] && str[i] != '\n')
 		i++;
-	res = malloc(sizeof(char) * i);
+	res = malloc(sizeof(char) * (i + 1));
 	if (!res)
 		return (NULL);
 	i = -1;
@@ -50,27 +50,28 @@ void	clear_till_nl(char str[])
 	j = 0;
 	while (str[i] && str[i] != '\n')
 		str[i++] = '\0';
+	if (str[i])
+		str[i++] = '\0';
 	while (str[i])
 	{
-		str[i++] = '\0';
 		str[j++] = str[i];	
+		str[i++] = '\0';
 	}
+	str[j] = '\0';
 }
 
 char	*ft_gnl(int fd)
 {
-	static char	buffer[42];
+	static char	buffer[43];
 	char		*line;
 	int		rv;
 
-	//printf("(gnl) buffer1 = %s\n", buffer);
+	buffer[42] = 0;
 	if (!*buffer)
 		rv = read(fd, buffer, 42);
 	if (rv <= 0)
 		return (NULL);
 	line = get_till_nl(buffer);
-	//printf("\n(gnl) line = %s\n", line);
-	//printf("(gnl) buffer = %s\n", buffer);
 	if (is_there_a_nl(buffer))
 		clear_till_nl(buffer);
 	else

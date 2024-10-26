@@ -15,13 +15,24 @@
 
 void	mlx_handler(t_game *game)
 {
+	//void	*image;
+
+	//image = mlx_new_image(game->mlx_dspl, 860, 1280);
+	//printf("mlx_handler\tgamex = %p, display = %p, window = %p\n", game, game->mlx_dspl, game->mlx_win);
+	mlx_hook(game->mlx_win, 2, 1L<<0, &mlx_closing, game);
 	mlx_loop(game->mlx_dspl);
 }
 
-void	mlx_closing(void *mlx_dspl, void *mlx_win)
+int	mlx_closing(int keycode, t_game *game)
 {
-	mlx_destroy_window(mlx_dspl, mlx_win);	
-	mlx_destroy_display(mlx_dspl);
+	(void)keycode;
+	//printf("gamex = %p\n", game);
+	//printf("display = %p\n", game->mlx_dspl);
+//	printf("window = %p\n", game->mlx_win);
+	mlx_destroy_window(game->mlx_dspl, game->mlx_win);
+	map_liberator(game->map, game->height);
+	mlx_destroy_display(game->mlx_dspl);
+	exit(0);
 }
 
 int	mlx_starter(t_game *game)
@@ -32,12 +43,13 @@ int	mlx_starter(t_game *game)
 		perror("encountered an error while creating display : ");
 		return (1);
 	}
-	game->mlx_win = mlx_new_window(game->mlx_dspl, 420, 420, "so_long");
+	game->mlx_win = mlx_new_window(game->mlx_dspl, 1260, 820, "so_long");
 	if (game->mlx_win == NULL)
 	{
 		mlx_destroy_display(game->mlx_dspl);
 		perror("encountered an error while creating window : ");
 		return (1);
 	}
+	//printf("mlx_starter\tgamex = %p, display = %p, window = %p\n", game, game->mlx_dspl, game->mlx_win);
 	return (0);
 }

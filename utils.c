@@ -74,11 +74,12 @@ char	**arrstr_cpy(char **map, int height)
 	while (i < height)
 	{
 		j = -1;
-		map_cpy[i] = malloc(sizeof(char) * ft_strlen(map[i]));
+		map_cpy[i] = malloc(sizeof(char) * (ft_strlen(map[i]) + 1));
 		if (map_cpy[i] == NULL)
 			return (map_liberator(map_cpy, (i + 1)), NULL);
 		while (map[i][++j])
 			map_cpy[i][j] = map[i][j];
+		map_cpy[i][j] = '\0';
 		i++;
 	}
 	return (map_cpy);

@@ -72,6 +72,6 @@ char	**arrstr_cpy(char **map, int height);
 char	*ft_strjoin(char *start, char *end);
 void	game_initializer(t_game *game, char **map, int height);
 int	mlx_starter(t_game *game);
-void	mlx_closing(void *mlx_dspl, void *mlx_win);
+int	mlx_closing(int keycode, t_game *game);
 void	mlx_handler(t_game *game);
 #endif
