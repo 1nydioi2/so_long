@@ -6,7 +6,7 @@
 /*   By: nilamber <nilamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 01:08:12 by nilamber          #+#    #+#             */
-/*   Updated: 2024/10/27 00:26:20 by nilamber         ###   ########.fr       */
+/*   Updated: 2024/10/27 02:12:52 by nilamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@
 # define UA_KEY		126
 # define DA_KEY		125
 
-typedef	struct	s_icon
+typedef	struct	s_image
 {
-	char	*player_icon;
-	char	*walls_icon;
-	char	*exit_icon;
-	char	*ground_icon;
-	char	*collectables_icon;
-} t_icon;
+	void	*player_image;
+	void	*wall_image;
+	void	*exit_image;
+	void	*ground_image;
+	void	*collectable_image;
+} t_image;
 
 typedef	struct	s_plr
 {
@@ -54,7 +54,7 @@ typedef	struct	s_game
 {
 	void	*mlx_dspl;
 	void	*mlx_win;
-	t_icon	icons;
+	t_image	images;
 	int	height;
 	char	**map;
 	int	chest_amount;

@@ -6,7 +6,7 @@
 /*   By: nilamber <nilamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 15:56:42 by nilamber          #+#    #+#             */
-/*   Updated: 2024/10/26 00:17:18 by nilamber         ###   ########.fr       */
+/*   Updated: 2024/10/27 02:12:54 by nilamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,22 @@ void	map_dater(int data[3], char **map, int height)
 	}
 }
 
+void	image_initializer(t_game *game)
+{
+	t_image	images;
+
+	images.player_image = "/sprites/player.xpm";
+	images.wall_image = "/sprites/wall.xpm";
+	images.exit_image = "/sprites/exit.xpm";
+	images.ground_image = "/sprites/ground.xpm";
+	images.collectable_image = "/sprites/collectable.xpm";
+	image.player_image = mlx_xpm_file_to_image()
+	game->images = images;
+}
+
 void	game_initializer(t_game *game, char **map, int height)
 {
 	int	map_data[3];
-	t_icon	icons;
 	t_plr	player;
 
 	game->map = map;
@@ -51,10 +63,4 @@ void	game_initializer(t_game *game, char **map, int height)
 	player.w = map_data[1];
 	game->chest_amount = map_data[2];
 	game->player = player;
-	icons.player_icon = "/icons/player.xpm";
-	icons.walls_icon = "/icons/walls.xpm";
-	icons.exit_icon = "/icons/exit.xpm";
-	icons.ground_icon = "/icons/ground.xpm";
-	icons.collectables_icon = "/icons/collectables.xpm";
-	game->icons = icons;
 }
