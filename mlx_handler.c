@@ -47,6 +47,7 @@ int	mlx_starter(t_game *game)
 		return (1);
 	}
 	mlx_get_screen_size(game->mlx_dspl, &x, &y);
+	printf("screen size = %d * %d\t/6 = %d * %d\n", x, y, (x / 6), (y / 6));
 	game->mlx_win = mlx_new_window(game->mlx_dspl, x, y, "so_long");
 	if (game->mlx_win == NULL)
 	{
