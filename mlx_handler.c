@@ -19,7 +19,7 @@ void	mlx_handler(t_game *game)
 
 	//image = mlx_new_image(game->mlx_dspl, 860, 1280);
 	//printf("mlx_handler\tgamex = %p, display = %p, window = %p\n", game, game->mlx_dspl, game->mlx_win);
-	mlx_hook(game->mlx_win, 2, 0, &key_redirector, game);
+	mlx_hook(game->mlx_win, 2,1L<<0, &key_redirector, game);
 	mlx_loop(game->mlx_dspl);
 }
 
@@ -37,13 +37,17 @@ int	mlx_closing(t_game *game)
 
 int	mlx_starter(t_game *game)
 {
+	int	x;
+	int	y;
+
 	game->mlx_dspl = mlx_init();
 	if (game->mlx_dspl == NULL)
 	{
 		perror("encountered an error while creating display : ");
 		return (1);
 	}
-	game->mlx_win = mlx_new_window(game->mlx_dspl, 1260, 820, "so_long");
+	mlx_get_screen_size(game->mlx_dspl, &x, &y);
+	game->mlx_win = mlx_new_window(game->mlx_dspl, x, y, "so_long");
 	if (game->mlx_win == NULL)
 	{
 		mlx_destroy_display(game->mlx_dspl);

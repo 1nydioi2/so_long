@@ -20,18 +20,24 @@
 # include <string.h>
 # include <bsd/string.h>
 
-# define ESC_KEY	53
-# define W_KEY		13	
-# define Z_KEY		6
-# define A_KEY		0
-# define Q_KEY		12
-# define D_KEY		2
-# define S_KEY		1
+# define ESC_KEY	65307//53
+# define W_KEY		87//13	
+# define w_KEY		119
+# define Z_KEY		90//6
+# define z_KEY		122
+# define A_KEY		65//0
+# define a_KEY		97
+# define Q_KEY		81//12
+# define q_KEY		113
+# define D_KEY		68//2
+# define d_KEY		100
+# define S_KEY		83//1
+# define s_KEY		115
 # define E_KEY		14
-# define LA_KEY		123
-# define RA_KEY		124
-# define UA_KEY		126
-# define DA_KEY		125
+# define LA_KEY		65361//123
+# define RA_KEY		65363//124
+# define UA_KEY		65362//126
+# define DA_KEY		65364//125
 
 typedef	struct	s_image
 {
@@ -71,8 +77,10 @@ char	*ft_gnl(int fd);
 char	**arrstr_cpy(char **map, int height);
 char	*ft_strjoin(char *start, char *end);
 void	game_initializer(t_game *game, char **map, int height);
+void	image_initializer(t_game *game);
 int	mlx_starter(t_game *game);
 int	mlx_closing(t_game *game);
 void	mlx_handler(t_game *game);
 int	key_redirector(int keynum, t_game *game);
+void	mlx_frame_refresh(t_game *game, char direction);
 #endif
