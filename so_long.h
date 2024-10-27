@@ -6,7 +6,7 @@
 /*   By: nilamber <nilamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 01:08:12 by nilamber          #+#    #+#             */
-/*   Updated: 2024/10/26 00:18:03 by nilamber         ###   ########.fr       */
+/*   Updated: 2024/10/27 00:26:20 by nilamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ char	**arrstr_cpy(char **map, int height);
 char	*ft_strjoin(char *start, char *end);
 void	game_initializer(t_game *game, char **map, int height);
 int	mlx_starter(t_game *game);
-int	mlx_closing(int keycode, t_game *game);
+int	mlx_closing(t_game *game);
 void	mlx_handler(t_game *game);
+int	key_redirector(int keynum, t_game *game);
 #endif
