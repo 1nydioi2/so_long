@@ -53,6 +53,6 @@ int	main(int argc, char **argv)
 	game_initializer(&game, map, height);
 	if (mlx_starter(&game))
 		return (map_liberator(map, height), 1);
-	//printf("main\tgamex = %p, display = %p, window = %p\n", &game, game.mlx_dspl, game.mlx_win);
+	image_initializer(&game);
 	mlx_handler(&game);
 }

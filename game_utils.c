@@ -39,14 +39,24 @@ void	map_dater(int data[3], char **map, int height)
 void	image_initializer(t_game *game)
 {
 	t_image	images;
+	int	width;
+	int	height;
 
-	images.player_image = "/sprites/player.xpm";
-	images.wall_image = "/sprites/wall.xpm";
-	images.exit_image = "/sprites/exit.xpm";
-	images.ground_image = "/sprites/ground.xpm";
-	images.collectable_image = "/sprites/collectable.xpm";
-	image.player_image = mlx_xpm_file_to_image()
+	width = 0;
+	height = 0;
+	printf("image_init\tdisplayx = %p\n", game->mlx_dspl);
+	images.wall_image = "sprites/wall.xpm";
+	images.exit_image = "sprites/exit.xpm";
+	images.ground_image = "sprites/ground.xpm";
+	images.collectable_image = "sprites/collectable.xpm";
+	images.player_image = mlx_xpm_file_to_image(game->mlx_dspl, "sprites/player.xpm", &width, &height);
+	images.wall_image = mlx_xpm_file_to_image(game->mlx_dspl, "sprites/wall.xpm", &width, &height);
+	images.exit_image = mlx_xpm_file_to_image(game->mlx_dspl, "sprites/exit.xpm", &width, &height);
+	images.ground_image = mlx_xpm_file_to_image(game->mlx_dspl, "sprites/ground.xpm", &width, &height);
+	images.collectable_image = mlx_xpm_file_to_image(game->mlx_dspl, "sprites/collectable.xpm", &width, &height);
 	game->images = images;
+	printf("image_init\tgplayer_image = %p\n", game->images.player_image);
+	printf("image_init\tfplayer_image = %p\n", images.player_image);
 }
 
 void	game_initializer(t_game *game, char **map, int height)

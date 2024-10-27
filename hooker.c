@@ -19,18 +19,18 @@ void	move_up(t_game *game)
 	{	
 		if (game->map[game->player.h - 1][game->player.w] == 'C')
 		{
-			game->player.opened_chest++;
+			game->player.opened_chests++;
 			game->map[game->player.h - 1][game->player.w] = '0';
 		}
 		else if (game->map[game->player.h - 1][game->player.w] == 'E')
 		{			
-			if (game->player.opened_chest == game->chest_amount)
-				game->player.steps++ += mlx_closing(game);
+			if (game->player.opened_chests == game->chest_amount)
+				return (game->player.steps++, (void)mlx_closing(game));
 			else if (game->map[game->player.h - 2][game->player.w] != '1')
 			{
 				game->player.steps++;
 				game->player.h--;
-				return (move_right(game));
+				return ((void)move_up(game));
 			}
 			else
 				return ;
@@ -46,18 +46,18 @@ void	move_down(t_game *game)
 	{	
 		if (game->map[game->player.h + 1][game->player.w] == 'C')
 		{
-			game->player.opened_chest++;
+			game->player.opened_chests++;
 			game->map[game->player.h + 1][game->player.w] = '0';
 		}
 		else if (game->map[game->player.h + 1][game->player.w] == 'E')
 		{			
-			if (game->player.opened_chest == game->chest_amount)
-				game->player.steps++ += mlx_closing(game);
+			if (game->player.opened_chests == game->chest_amount)
+				return (game->player.steps++, (void)mlx_closing(game));
 			else if (game->map[game->player.h + 2][game->player.w] != '1')
 			{
 				game->player.steps++;
 				game->player.h++;
-				return (move_right(game));
+				return ((void)move_down(game));
 			}
 			else
 				return ;
@@ -73,18 +73,18 @@ void	move_left(t_game *game)
 	{	
 		if (game->map[game->player.h][game->player.w - 1] == 'C')
 		{
-			game->player.opened_chest++;
+			game->player.opened_chests++;
 			game->map[game->player.h][game->player.w - 1] = '0';
 		}
 		else if (game->map[game->player.h][game->player.w - 1] == 'E')
 		{			
-			if (game->player.opened_chest == game->chest_amount)
-				game->player.steps++ += mlx_closing(game);
+			if (game->player.opened_chests == game->chest_amount)
+				return (game->player.steps++, (void)mlx_closing(game));
 			else if (game->map[game->player.h][game->player.w - 2] != '1')
 			{
 				game->player.steps++;
 				game->player.w--;
-				return (move_right(game));
+				return ((void)move_left(game));
 			}
 			else
 				return ;
@@ -100,18 +100,18 @@ void	move_right(t_game *game)
 	{	
 		if (game->map[game->player.h][game->player.w + 1] == 'C')
 		{
-			game->player.opened_chest++;
+			game->player.opened_chests++;
 			game->map[game->player.h][game->player.w + 1] = '0';
 		}
 		else if (game->map[game->player.h][game->player.w + 1] == 'E')
 		{			
-			if (game->player.opened_chest == game->chest_amount)
-				game->player.steps++ += mlx_closing(game);
+			if (game->player.opened_chests == game->chest_amount)
+				return (game->player.steps++, (void)mlx_closing(game));
 			else if (game->map[game->player.h][game->player.w + 2] != '1')
 			{
 				game->player.steps++;
 				game->player.w++;
-				return (move_right(game));
+				return ((void)move_right(game));
 			}
 			else
 				return ;
@@ -126,28 +126,31 @@ int	key_redirector(int keynum, t_game *game)
 	char	direction;
 
 	direction = '0';
+	printf("keynum = %d\n", keynum);
 	if (keynum == ESC_KEY)
-		mlx_closing(game);
-	else if (keynum == W_KEY || (keynum == Z_KEY || keynum == UA_KEY))
+		return (mlx_closing(game));
+	else if ((keynum == W_KEY || keynum == w_KEY) || ((keynum == Z_KEY || keynum == z_KEY) || keynum == UA_KEY))
 	{
 		direction = 'u';
 		move_up(game);
 	}
-	else if (keynum == S_KEY || keynum == DA_KEY)
+	else if ((keynum == S_KEY || keynum == s_KEY) ||keynum == DA_KEY)
 	{
 		direction = 'd';
 		move_down(game);
 	}
-	else if (keynum == A_KEY || (keynum == Q_KEY || keynum == LA_KEY))
+	else if ((keynum == A_KEY || keynum == a_KEY) || ((keynum == Q_KEY || keynum == q_KEY) || keynum == LA_KEY))
 	{
 		direction = 'l';
 		move_left(game);
 	}
-	else if (keynum == D_KEY || keynum == RA_KEY)
+	else if ((keynum == D_KEY || keynum == d_KEY) || keynum == RA_KEY)
 	{	
 		direction = 'r';
 		move_right(game);
 	}
-	mlx_image_refresh(game, direction);
+	else
+		return (0);
+	mlx_frame_refresh(game, direction);
 	return (0);
 }
