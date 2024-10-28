@@ -92,4 +92,5 @@ void	mlx_handler(t_game *game);
 int	key_redirector(int keynum, t_game *game);
 void	mlx_refresh_whole_frame(t_game *game);
 void	mlx_refresh_player(t_game *game, int last_x, int last_y);
+int	wall_in_range(t_game *game);
 #endif

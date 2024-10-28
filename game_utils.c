@@ -50,7 +50,9 @@ void	image_initializer(t_game *game)
 	images.ground_image = mlx_xpm_file_to_image(game->mlx_dspl, "sprites/ground.xpm", &width, &height);
 	images.collectable_image = mlx_xpm_file_to_image(game->mlx_dspl, "sprites/collectable.xpm", &width, &height);
  	images.range_x = (game->s_width / images.size);
+	images.range_x -= ((game->m_width < images.range_x) * (images.range_x - game->m_width));
  	images.range_y = (game->s_height / images.size);
+	images.range_y -= ((game->m_height < images.range_y) * (images.range_y - game->m_height));
 	images.offset_x = ((game->s_width % images.size) / 2);
         images.offset_y = ((game->s_height % images.size) / 2);
         if (game->m_width < images.range_x)
@@ -67,8 +69,8 @@ void	game_initializer(t_game *game, char **map, int height)
 	t_plr	player;
 
 	game->map = map;
-	game->height = height;
-	game->width = ft_strlen(game->map[0]);
+	game->m_height = height;
+	game->m_width = ft_strlen(game->map[0]);
 	map_dater(map_data, map, height);
 	player.steps = 0;
 	player.opened_chests = 0;

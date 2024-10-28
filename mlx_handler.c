@@ -29,7 +29,7 @@ int	mlx_closing(t_game *game)
 	//printf("display = %p\n", game->mlx_dspl);
 	//printf("window = %p\n", game->mlx_win);
 	mlx_destroy_window(game->mlx_dspl, game->mlx_win);
-	map_liberator(game->map, game->height);
+	map_liberator(game->map, game->m_height);
 	mlx_destroy_display(game->mlx_dspl);
 	free(game->mlx_dspl);
 	exit(0);
