@@ -25,6 +25,7 @@ void	move_up(t_game *game)
 				return (game->player.steps++, (void)mlx_closing(game));
 			else if (game->map[game->player.h - 2][game->player.w] != '1')
 			{
+				game->map[game->player.h][game->player.w] = '0';
 				game->player.steps++;
 				game->player.h--;
 				return ((void)move_up(game));
@@ -32,7 +33,8 @@ void	move_up(t_game *game)
 			else
 				return ;
 		}
-		game->map[game->player.h][game->player.w] = '0';
+		if (game->map[game->player.h][game->player.w] != 'E')
+			game->map[game->player.h][game->player.w] = '0';
 		game->player.steps++;
 		game->player.h--;
 		game->map[game->player.h][game->player.w] = 'P';
@@ -51,6 +53,7 @@ void	move_down(t_game *game)
 				return (game->player.steps++, (void)mlx_closing(game));
 			else if (game->map[game->player.h + 2][game->player.w] != '1')
 			{
+				game->map[game->player.h][game->player.w] = '0';
 				game->player.steps++;
 				game->player.h++;
 				return ((void)move_down(game));
@@ -58,7 +61,8 @@ void	move_down(t_game *game)
 			else
 				return ;
 		}
-		game->map[game->player.h][game->player.w] = '0';
+		if (game->map[game->player.h][game->player.w] != 'E')
+			game->map[game->player.h][game->player.w] = '0';
 		game->player.steps++;
 		game->player.h++;
 		game->map[game->player.h][game->player.w] = 'P';
@@ -77,6 +81,7 @@ void	move_left(t_game *game)
 				return (game->player.steps++, (void)mlx_closing(game));
 			else if (game->map[game->player.h][game->player.w - 2] != '1')
 			{
+				game->map[game->player.h][game->player.w] = '0';
 				game->player.steps++;
 				game->player.w--;
 				return ((void)move_left(game));
@@ -84,7 +89,8 @@ void	move_left(t_game *game)
 			else
 				return ;
 		}
-		game->map[game->player.h][game->player.w] = '0';
+		if (game->map[game->player.h][game->player.w] != 'E')
+			game->map[game->player.h][game->player.w] = '0';
 		game->player.steps++;
 		game->player.w--;
 		game->map[game->player.h][game->player.w] = 'P';
@@ -103,6 +109,7 @@ void	move_right(t_game *game)
 				return (game->player.steps++, (void)mlx_closing(game));
 			else if (game->map[game->player.h][game->player.w + 2] != '1')
 			{
+				game->map[game->player.h][game->player.w] = '0';
 				game->player.steps++;
 				game->player.w++;
 				return ((void)move_right(game));
@@ -110,7 +117,8 @@ void	move_right(t_game *game)
 			else
 				return ;
 		}
-		game->map[game->player.h][game->player.w] = '0';
+		if (game->map[game->player.h][game->player.w] != 'E')
+			game->map[game->player.h][game->player.w] = '0';
 		game->player.steps++;
 		game->player.w++;
 		game->map[game->player.h][game->player.w] = 'P';
@@ -136,6 +144,7 @@ int	key_redirector(int keynum, t_game *game)
 		move_right(game);
 	else
 		return (0);
+	printf("last x = %d, last y = %d, x = %d, y = %d\n", last[0], last[1], game->player.w, game->player.h);
 	if (wall_in_range(game) == 2)
 		return (mlx_refresh_player(game, last[0], last[1]), 0);
 	return (mlx_refresh_whole_frame(game), 0);

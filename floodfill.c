@@ -14,9 +14,9 @@
 
 int	acf(char **map, int h, int w)
 {
-	if (map[h + 1][w] == 'E' || map[h - 1][w] == 'P')
+	if (map[h + 1][w] == 'E' || map[h + 1][w] == 'P')
 		return (1);
-	else if (map[h - 1][w] == 'E' || map[h + 1][w] == 'P')
+	else if (map[h - 1][w] == 'E' || map[h - 1][w] == 'P')
 		return (1);
 	else if (map[h][w + 1] == 'E' || map[h][w + 1] == 'P')
 		return (1);
@@ -72,7 +72,7 @@ int	fill(char **map, int h, int w, int *flooded)
 	return (p);
 }
 
-int	flood(char **map, int height, int bo)
+int	flood(char **map, int height, int bo, int cc)
 {
 	int	h;
 	int	w;
@@ -83,7 +83,7 @@ int	flood(char **map, int height, int bo)
 	pte = 0;
 	ptc = 0;
 	f = &bo;
-	while (!*f && (ptc != chest_count(map, height) || !pte))
+	while (!*f && (ptc != cc || !pte))
 	{
 		*f = 1;
 		h = 0;
@@ -91,12 +91,13 @@ int	flood(char **map, int height, int bo)
 		while (++h < (height - 1) && (!pte || !ptc))
 		{
 			w = 0;
-			while (map[h][++w + 1] && (!pte || !ptc))
+			while (map[h][++w + 1] && (!pte || ptc != cc))
 				if (map[h][w] == '0' && fill(map, h, w, f))
 					pte += (!pte);
 				else if (pte && map[h][w] == 'C')
 					ptc += (acf(map, h, w));
 		}
 	}
+	printf("ptc = %d, pte = %d, cc = %d\n", ptc, pte, chest_count(map, height));
 	return ((ptc == chest_count(map, height)) * pte);
 }

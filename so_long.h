@@ -76,7 +76,7 @@ typedef	struct	s_game
 } t_game;
 
 int	ft_strlen(char *str);
-int	flood(char **map, int height, int bo);
+int	flood(char **map, int height, int bool, int chest_count);
 int	chest_count(char **map, int height);
 void	map_liberator(char **map, int height);
 int	fline_count(char *name);
