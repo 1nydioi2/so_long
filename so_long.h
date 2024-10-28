@@ -6,7 +6,7 @@
 /*   By: nilamber <nilamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 01:08:12 by nilamber          #+#    #+#             */
-/*   Updated: 2024/10/27 02:12:52 by nilamber         ###   ########.fr       */
+/*   Updated: 2024/10/28 01:46:39 by nilamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,11 @@
 
 typedef	struct	s_image
 {
+	int	offset_x;
+	int	range_x;
+	int	range_y;
+	int	offset_y;
+	int	size;
 	void	*player_image;
 	void	*wall_image;
 	void	*exit_image;
@@ -60,8 +65,11 @@ typedef	struct	s_game
 {
 	void	*mlx_dspl;
 	void	*mlx_win;
+	int	s_height;
+	int	s_width;
 	t_image	images;
-	int	height;
+	int	m_height;
+	int	m_width;
 	char	**map;
 	int	chest_amount;
 	t_plr	player;
@@ -82,5 +90,6 @@ int	mlx_starter(t_game *game);
 int	mlx_closing(t_game *game);
 void	mlx_handler(t_game *game);
 int	key_redirector(int keynum, t_game *game);
-void	mlx_frame_refresh(t_game *game, char direction);
+void	mlx_refresh_whole_frame(t_game *game);
+void	mlx_refresh_player(t_game *game, int last_x, int last_y);
 #endif

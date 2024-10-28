@@ -6,7 +6,7 @@
 /*   By: nilamber <nilamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 00:23:01 by nilamber          #+#    #+#             */
-/*   Updated: 2024/10/27 02:32:26 by nilamber         ###   ########.fr       */
+/*   Updated: 2024/10/28 01:42:21 by nilamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,9 +123,11 @@ void	move_right(t_game *game)
 
 int	key_redirector(int keynum, t_game *game)
 {
+	int	last[2];
 	char	direction;
 
-	direction = '0';
+	last[0] = game->player.w;
+	last[1] = game->player.h;
 	printf("keynum = %d\n", keynum);
 	if (keynum == ESC_KEY)
 		return (mlx_closing(game));
@@ -151,6 +153,7 @@ int	key_redirector(int keynum, t_game *game)
 	}
 	else
 		return (0);
-	mlx_frame_refresh(game, direction);
-	return (0);
+	if (wall_in_range(game, direction, last[0], last[1]))
+		return (0);
+	return (mlx_refresh_whole_frame(game), 0);
 }

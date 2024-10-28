@@ -6,7 +6,7 @@
 /*   By: nilamber <nilamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 15:56:42 by nilamber          #+#    #+#             */
-/*   Updated: 2024/10/27 02:12:54 by nilamber         ###   ########.fr       */
+/*   Updated: 2024/10/28 01:45:23 by nilamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,23 @@ void	image_initializer(t_game *game)
 	int	width;
 	int	height;
 
-	width = 0;
 	height = 0;
-	printf("image_init\tdisplayx = %p\n", game->mlx_dspl);
-	images.wall_image = "sprites/wall.xpm";
-	images.exit_image = "sprites/exit.xpm";
-	images.ground_image = "sprites/ground.xpm";
-	images.collectable_image = "sprites/collectable.xpm";
+	images.size = 166;
 	images.player_image = mlx_xpm_file_to_image(game->mlx_dspl, "sprites/player.xpm", &width, &height);
 	images.wall_image = mlx_xpm_file_to_image(game->mlx_dspl, "sprites/wall.xpm", &width, &height);
 	images.exit_image = mlx_xpm_file_to_image(game->mlx_dspl, "sprites/exit.xpm", &width, &height);
 	images.ground_image = mlx_xpm_file_to_image(game->mlx_dspl, "sprites/ground.xpm", &width, &height);
 	images.collectable_image = mlx_xpm_file_to_image(game->mlx_dspl, "sprites/collectable.xpm", &width, &height);
+ 	images.range_x = (game->s_width / images.size);
+ 	images.range_y = (game->s_height / images.size);
+	images.offset_x = ((game->s_width % images.size) / 2);
+        images.offset_y = ((game->s_height % images.size) / 2);
+        if (game->m_width < images.range_x)
+                images.offset_x += ((((game->s_width % images.size) - game->m_width) * images.size) / 2);
+        if (game->m_height < images.range_y)
+                images.offset_y += ((((game->s_height % images.size) - game->m_height) * images.size) / 2);	
 	game->images = images;
-	printf("image_init\tgplayer_image = %p\n", game->images.player_image);
-	printf("image_init\tfplayer_image = %p\n", images.player_image);
+	printf("image width = %d, height = %d\n", width, height);
 }
 
 void	game_initializer(t_game *game, char **map, int height)
@@ -66,6 +68,7 @@ void	game_initializer(t_game *game, char **map, int height)
 
 	game->map = map;
 	game->height = height;
+	game->width = ft_strlen(game->map[0]);
 	map_dater(map_data, map, height);
 	player.steps = 0;
 	player.opened_chests = 0;
