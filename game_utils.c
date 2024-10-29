@@ -36,6 +36,18 @@ void	map_dater(int data[3], char **map, int height)
 	}
 }
 
+void	image_pos_init(t_game *game)
+{
+ 	game->images.range_x = (game->s_width / game->images.size);
+ 	game->images.range_y = (game->s_height / game->images.size);
+	game->images.offset_x = ((game->s_width % game->images.size) / 2) +
+		((game->images.size * (game->images.range_x - game->m_width)) / 2);
+	game->images.range_x -= ((game->m_width < game->images.range_x) * (game->images.range_x - game->m_width));
+        game->images.offset_y = ((game->s_height % game->images.size) / 2) +
+		((game->images.size * (game->images.range_y - game->m_height)) / 2);
+	game->images.range_y -= ((game->m_height < game->images.range_y) * (game->images.range_y - game->m_height));
+}
+
 void	image_initializer(t_game *game)
 {
 	t_image	images;
@@ -49,17 +61,8 @@ void	image_initializer(t_game *game)
 	images.exit_image = mlx_xpm_file_to_image(game->mlx_dspl, "sprites/exit.xpm", &width, &height);
 	images.ground_image = mlx_xpm_file_to_image(game->mlx_dspl, "sprites/ground.xpm", &width, &height);
 	images.collectable_image = mlx_xpm_file_to_image(game->mlx_dspl, "sprites/collectable.xpm", &width, &height);
- 	images.range_x = (game->s_width / images.size);
-	images.range_x -= ((game->m_width < images.range_x) * (images.range_x - game->m_width));
- 	images.range_y = (game->s_height / images.size);
-	images.range_y -= ((game->m_height < images.range_y) * (images.range_y - game->m_height));
-	images.offset_x = ((game->s_width % images.size) / 2);
-        images.offset_y = ((game->s_height % images.size) / 2);
-        if (game->m_width < images.range_x)
-                images.offset_x += ((((game->s_width % images.size) - game->m_width) * images.size) / 2);
-        if (game->m_height < images.range_y)
-                images.offset_y += ((((game->s_height % images.size) - game->m_height) * images.size) / 2);	
 	game->images = images;
+	image_pos_init(game);
 	printf("image width = %d, height = %d\n", width, height);
 }
 
