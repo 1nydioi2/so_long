@@ -19,15 +19,16 @@ void	mlx_handler(t_game *game)
 
 	//image = mlx_new_image(game->mlx_dspl, 860, 1280);
 	//printf("mlx_handler\tgamex = %p, display = %p, window = %p\n", game, game->mlx_dspl, game->mlx_win);
-	mlx_hook(game->mlx_win, 2,1L<<0, &key_redirector, game);
+	mlx_hook(game->mlx_win, 17, 0, &mlx_closing, game);
+	mlx_hook(game->mlx_win, 2, 1L<<0, &key_redirector, game);
 	mlx_loop(game->mlx_dspl);
 }
 
 int	mlx_closing(t_game *game)
 {
-	//printf("gamex = %p\n", game);
-	//printf("display = %p\n", game->mlx_dspl);
-	//printf("window = %p\n", game->mlx_win);
+	printf("gamex = %p\n", game);
+	printf("display = %p\n", game->mlx_dspl);
+	printf("window = %p\n", game->mlx_win);
 	mlx_destroy_window(game->mlx_dspl, game->mlx_win);
 	map_liberator(game->map, game->m_height);
 	mlx_destroy_display(game->mlx_dspl);
