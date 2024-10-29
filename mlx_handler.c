@@ -26,12 +26,10 @@ void	mlx_handler(t_game *game)
 
 int	mlx_closing(t_game *game)
 {
-	printf("gamex = %p\n", game);
-	printf("display = %p\n", game->mlx_dspl);
-	printf("window = %p\n", game->mlx_win);
 	mlx_destroy_window(game->mlx_dspl, game->mlx_win);
 	map_liberator(game->map, game->m_height);
 	mlx_destroy_display(game->mlx_dspl);
+	print_steps(game->player.steps);
 	free(game->mlx_dspl);
 	exit(0);
 }

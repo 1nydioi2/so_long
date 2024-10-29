@@ -13,6 +13,24 @@
 #include "so_long.h"
 #include "mlx/mlx.h"
 
+void	print_steps(int steps)
+{
+	char	rev[11];
+	int	i;
+
+	i = 0;
+	write (1, "steps : ", 8);
+	while (steps)
+	{
+		rev[i++] = ((steps % 10) + 48);
+		steps /= 10;
+	}
+	while (--i >= 0)
+		write(1, &rev[i], 1);
+	write(1, "\n", 1);
+	return ;
+}
+
 void	map_dater(int data[3], char **map, int height)
 {
 	int	h;
@@ -40,11 +58,16 @@ void	image_pos_init(t_game *game)
 {
  	game->images.range_x = (game->s_width / game->images.size);
  	game->images.range_y = (game->s_height / game->images.size);
-	game->images.offset_x = ((game->s_width % game->images.size) / 2) +
-		((game->images.size * (game->images.range_x - game->m_width)) / 2);
-	game->images.range_x -= ((game->m_width < game->images.range_x) * (game->images.range_x - game->m_width));
-        game->images.offset_y = ((game->s_height % game->images.size) / 2) +
-		((game->images.size * (game->images.range_y - game->m_height)) / 2);
+	game->images.offset_x = ((game->s_width % game->images.size) / 2);
+	if (game->m_width < game->images.range_x)
+       		game->images.offset_x += ((game->images.size *
+			(game->images.range_x - game->m_width)) / 2);
+	game->images.range_x -= ((game->m_width < game->images.range_x) *
+			(game->images.range_x - game->m_width));
+        game->images.offset_y = ((game->s_height % game->images.size) / 2);
+	if (game->m_height < game->images.range_y)
+		game->images.offset_y += ((game->images.size *
+			(game->images.range_y - game->m_height)) / 2);
 	game->images.range_y -= ((game->m_height < game->images.range_y) * (game->images.range_y - game->m_height));
 }
 

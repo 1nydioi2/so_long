@@ -84,6 +84,7 @@ int	is_there_a_map_issue(char *name, char ***map, int height);
 char	*ft_gnl(int fd);
 char	**arrstr_cpy(char **map, int height);
 char	*ft_strjoin(char *start, char *end);
+void	print_steps(int steps);
 void	game_initializer(t_game *game, char **map, int height);
 void	image_initializer(t_game *game);
 int	mlx_starter(t_game *game);
