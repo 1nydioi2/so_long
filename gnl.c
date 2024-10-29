@@ -76,12 +76,13 @@ char	*ft_gnl(int fd)
 		clear_till_nl(buffer);
 	else
 	{
-		while (!is_there_a_nl(buffer) || rv <= 0)
+		while (!is_there_a_nl(buffer) && rv > 0)
 		{
+			clear_till_nl(buffer);
 			rv = read(fd, buffer, 42);
 			line = ft_strjoin(line, get_till_nl(buffer));
-			clear_till_nl(buffer);
 		}
+		clear_till_nl(buffer);
 	}
 	return (line);
 }

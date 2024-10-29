@@ -23,7 +23,7 @@ void	here_is_the_map(int fd, char ***map, int height)
 	while (++i < height)
 	{
 		(*map)[i] = ft_gnl(fd);
-		printf("map[%d] = %s\n", i, (*map)[i]);
+		printf("height = %d strlen = %d, map[%d] = %s\n", height, ft_strlen((*map)[i]), i, (*map)[i]);
 		if ((*map)[i] == NULL)
 		{
 			map_liberator((*map), i + 1);

@@ -14,29 +14,29 @@
 
 int	fline_count(char *name)
 {
-	int	line_count;
+	int	lc[2];
 	char	buffer[42];
-	int	fd;
 	int	i;
 	int	rv;
+	int	fd;
 
 	fd = open(name, O_RDONLY);
 	if (fd < 1)
 		return (-1);
-	line_count = 0;
+	lc[0] = 0;
+	lc[1] = 0;
 	rv = read(fd, buffer, 42);
-	while (rv == 42)
+	while (rv > 0)
 	{
 		i = 0;
-		while (i < 42)
-			line_count += (buffer[i++] == '\n');
+		while ((i < rv && (lc[1] -= ((lc[1]) * (buffer[i] != '\n'))))
+					|| i < rv)
+			if (buffer[i++] == '\n' && (++lc[0] && lc[1]++))
+				return (1);
 		rv = read(fd, buffer, 42);
 	}
-	i = 0;
-	while (i < rv)
-		line_count += (buffer[i++] == '\n');
-	close (fd);
-	return (line_count);
+	close(fd);
+	return (lc[0]);
 }
 
 int	ft_strlen(char *str)

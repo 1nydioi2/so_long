@@ -94,7 +94,7 @@ int	flood(char **map, int height, int bo, int cc)
 			while (map[h][++w + 1] && (!pte || ptc != cc))
 				if (map[h][w] == '0' && fill(map, h, w, f))
 					pte += (!pte);
-				else if (pte && map[h][w] == 'C')
+				else if (pte && (map[h][w] == 'C'))
 					ptc += (acf(map, h, w));
 		}
 	}
