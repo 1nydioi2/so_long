@@ -12,20 +12,6 @@
 
 #include "so_long.h"
 
-int	acf(char **map, int h, int w)
-{
-	if (map[h + 1][w] == 'E' || map[h + 1][w] == 'P')
-		return (1);
-	else if (map[h - 1][w] == 'E' || map[h - 1][w] == 'P')
-		return (1);
-	else if (map[h][w + 1] == 'E' || map[h][w + 1] == 'P')
-		return (1);
-	else if (map[h][w - 1] == 'E' || map[h][w - 1] == 'P')
-		return (1);
-	else
-		return (0);
-}
-
 int	chest_count(char **map, int height)
 {
 	int	chest;
@@ -55,24 +41,24 @@ int	fill(char **map, int h, int w, int *flooded)
 		map[h][w] = map[h - 1][w];
 	if (map[h + 1][w] == 'E' || map[h + 1][w] == 'P')
 	{
-		p += (map[h][w] != '0' && map[h][w] != map[h + 1][w]);
+		p += (map[h][w] != c && map[h][w] != map[h + 1][w]);
 		map[h][w] = map[h + 1][w];
 	}
 	if (map[h][w - 1] == 'E' || map[h][w - 1] == 'P')
 	{
-		p += (map[h][w] != '0' && map[h][w] != map[h][w - 1]);
+		p += (map[h][w] != c && map[h][w] != map[h][w - 1]);
 		map[h][w] = map[h][w - 1];
 	}
 	if (map[h][w + 1] == 'E' || map[h][w + 1] == 'P')
 	{
-		p += (map[h][w] != '0' && map[h][w] != map[h][w + 1]);
+		p += (map[h][w] != c && map[h][w] != map[h][w + 1]);
 		map[h][w] = map[h][w + 1];
 	}
 	*flooded = (c == map[h][w] && *flooded);
 	return (p);
 }
 
-int	flood(char **map, int height, int bo, int cc)
+int	flood(char **map, int height, int bo)
 {
 	int	h;
 	int	w;
@@ -83,21 +69,21 @@ int	flood(char **map, int height, int bo, int cc)
 	pte = 0;
 	ptc = 0;
 	f = &bo;
-	while (!*f && (ptc != cc || !pte))
+	while (!*f && (!pte || !ptc))
 	{
 		*f = 1;
 		h = 0;
-		ptc = 0;
-		while (++h < (height - 1) && (!pte || !ptc))
+		ptc = 1;
+		while (++h < (height - 1))
 		{
 			w = 0;
-			while (map[h][++w + 1] && (!pte || ptc != cc))
-				if (map[h][w] == '0' && fill(map, h, w, f))
+			while (map[h][++w + 1])
+				if ((map[h][w] == '0' || map[h][w] == 'C') && fill(map, h, w, f))
 					pte += (!pte);
-				else if (pte && (map[h][w] == 'C'))
-					ptc += (acf(map, h, w));
+				else if (map[h][w] == 'C')
+					ptc = 0;
 		}
 	}
 	printf("ptc = %d, pte = %d, cc = %d\n", ptc, pte, chest_count(map, height));
-	return ((ptc == chest_count(map, height)) * pte);
+	return (ptc * pte);
 }

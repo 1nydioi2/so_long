@@ -94,12 +94,10 @@ int	is_the_map_doable(char **map, int height)
 	int	res;
 	int	bo;
 	char	**map_cpy;
-	int	chest_count_i;
 
 	bo = 0;
-	chest_count_i = chest_count(map, height);
 	map_cpy = arrstr_cpy(map, height);
-	res = flood(map_cpy, height, bo, chest_count_i);
+	res = flood(map_cpy, height, bo);
 	map_liberator(map_cpy, height);
 	return (res);
 }
