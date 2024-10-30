@@ -1,0 +1,316 @@
+==4582== Memcheck, a memory error detector
+==4582== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==4582== Using Valgrind-3.22.0-bd4db67b1d-20231031 and LibVEX; rerun with -h for copyright info
+==4582== Command: ./so_long maps/nice_map.ber
+==4582== Parent PID: 2384
+==4582== 
+--4582-- 
+--4582-- Valgrind options:
+--4582--    --leak-check=full
+--4582--    --show-leak-kinds=all
+--4582--    --track-origins=yes
+--4582--    --verbose
+--4582--    --log-file=valgrind_output.log
+--4582--    --error-exitcode=1
+--4582--    --malloc-fill=0xAA
+--4582--    --free-fill=0x55
+--4582-- Contents of /proc/version:
+--4582--   Linux version 6.8.0-47-generic (buildd@lcy02-amd64-023) (x86_64-linux-gnu-gcc-13 (Ubuntu 13.2.0-23ubuntu4) 13.2.0, GNU ld (GNU Binutils for Ubuntu) 2.42) #47-Ubuntu SMP PREEMPT_DYNAMIC Fri Sep 27 21:40:26 UTC 2024
+--4582-- 
+--4582-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
+--4582-- Page sizes: currently 4096, max supported 4096
+--4582-- Valgrind library directory: /usr/libexec/valgrind
+--4582-- Reading syms from /home/ninja/CC/M2/so_long/so_long
+--4582-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+--4582--   Considering /usr/lib/debug/.build-id/35/3e1b6cb0eebc08cf3ff812eae8a51b4efd684e.debug ..
+--4582--   .. build-id is valid
+--4582-- Reading syms from /usr/libexec/valgrind/memcheck-amd64-linux
+--4582--    object doesn't have a dynamic symbol table
+--4582-- Scheduler: using generic scheduler lock implementation.
+--4582-- Reading suppressions file: /usr/libexec/valgrind/default.supp
+==4582== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-4582-by-ninja-on-???
+==4582== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-4582-by-ninja-on-???
+==4582== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-4582-by-ninja-on-???
+==4582== 
+==4582== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==4582== don't want to do, unless you know exactly what you're doing,
+==4582== or are doing some strange experiment):
+==4582==   /usr/bin/vgdb --pid=4582 ...command...
+==4582== 
+==4582== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==4582==   /path/to/gdb ./so_long
+==4582== and then give GDB the following command
+==4582==   target remote | /usr/bin/vgdb --pid=4582
+==4582== --pid is optional if only one valgrind process is running
+==4582== 
+--4582-- REDIR: 0x4028b00 (ld-linux-x86-64.so.2:strlen) redirected to 0x580c2e1a (???)
+--4582-- REDIR: 0x40272b0 (ld-linux-x86-64.so.2:index) redirected to 0x580c2e34 (???)
+--4582-- Reading syms from /usr/libexec/valgrind/vgpreload_core-amd64-linux.so
+--4582-- Reading syms from /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
+==4582== WARNING: new redirection conflicts with existing -- ignoring it
+--4582--     old: 0x04028b00 (strlen              ) R-> (0000.0) 0x580c2e1a ???
+--4582--     new: 0x04028b00 (strlen              ) R-> (2007.0) 0x0484f340 strlen
+--4582-- REDIR: 0x40274e0 (ld-linux-x86-64.so.2:strcmp) redirected to 0x4850460 (strcmp)
+--4582-- REDIR: 0x4026910 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4853cd0 (mempcpy)
+--4582-- Reading syms from /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0
+--4582-- Reading syms from /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+--4582-- Reading syms from /usr/lib/x86_64-linux-gnu/libc.so.6
+--4582--   Considering /usr/lib/debug/.build-id/6d/64b17fbac799e68da7ebd9985ddf9b5cb375e6.debug ..
+--4582--   .. build-id is valid
+--4582-- Reading syms from /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+--4582-- Reading syms from /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+--4582-- Reading syms from /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+--4582-- Reading syms from /usr/lib/x86_64-linux-gnu/libbsd.so.0.12.1
+--4582-- Reading syms from /usr/lib/x86_64-linux-gnu/libmd.so.0.1.0
+--4582-- REDIR: 0x4028ca0 (ld-linux-x86-64.so.2:strncmp) redirected to 0x484fc90 (strncmp)
+--4582-- REDIR: 0x4a79040 (libc.so.6:strnlen) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--4582-- REDIR: 0x4a790d0 (libc.so.6:strpbrk) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--4582-- REDIR: 0x4a77190 (libc.so.6:strcmp) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--4582-- REDIR: 0x4a903b0 (libc.so.6:wcsnlen) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--4582-- REDIR: 0x4a76280 (libc.so.6:memset) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--4582-- REDIR: 0x4a8fb20 (libc.so.6:wcslen) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--4582-- REDIR: 0x4afb3c0 (libc.so.6:__memcpy_chk) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--4582-- REDIR: 0x4a761f0 (libc.so.6:memrchr) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--4582-- REDIR: 0x4a90350 (libc.so.6:wcsncpy) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--4582-- REDIR: 0x4a75710 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--4582-- REDIR: 0x4a8e8e0 (libc.so.6:wcschr) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--4582-- REDIR: 0x4a77080 (libc.so.6:index) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--4582-- REDIR: 0x4a79100 (libc.so.6:rindex) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--4582-- REDIR: 0x4a8e990 (libc.so.6:wcscmp) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--4582-- REDIR: 0x4a764a0 (libc.so.6:stpncpy) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--4582-- REDIR: 0x4a9ceb0 (libc.so.6:wmemchr) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--4582-- REDIR: 0x4a78ee0 (libc.so.6:strncmp) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--4582-- REDIR: 0x4a76500 (libc.so.6:strcasecmp) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--4582-- REDIR: 0x4a78300 (libc.so.6:strcspn) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--4582-- REDIR: 0x4a8f8f0 (libc.so.6:wcscpy) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--4582-- REDIR: 0x4a77010 (libc.so.6:strcat) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--4582-- REDIR: 0x4a78de0 (libc.so.6:strncasecmp_l) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--4582-- REDIR: 0x4a77100 (libc.so.6:strchrnul) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--4582-- REDIR: 0x4a75620 (libc.so.6:bcmp) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--4582-- REDIR: 0x4a78290 (libc.so.6:strcpy) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--4582-- REDIR: 0x4a765a0 (libc.so.6:strcasecmp_l) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--4582-- REDIR: 0x4a78cb0 (libc.so.6:strlen) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--4582-- REDIR: 0x4a78f80 (libc.so.6:strncpy) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--4582-- REDIR: 0x4a9cf30 (libc.so.6:wmemcmp) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--4582-- REDIR: 0x4afb4e0 (libc.so.6:__memmove_chk) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+==4582== WARNING: new redirection conflicts with existing -- ignoring it
+--4582--     old: 0x04b4c9d0 (__memcpy_chk_avx_una) R-> (2030.0) 0x04853dd0 __memcpy_chk
+--4582--     new: 0x04b4c9d0 (__memcpy_chk_avx_una) R-> (2024.0) 0x04853740 __memmove_chk
+--4582-- REDIR: 0x4a76430 (libc.so.6:stpcpy) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--4582-- REDIR: 0x4a75fb0 (libc.so.6:memmove) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+==4582== Preferring higher priority redirection:
+--4582--     old: 0x04b4ca00 (__memcpy_avx_unalign) R-> (2018.0) 0x04851580 __memcpy_avx_unaligned_erms
+--4582--     new: 0x04b4ca00 (__memcpy_avx_unalign) R-> (2018.1) 0x04852d60 memmove
+--4582-- REDIR: 0x4a755a0 (libc.so.6:memchr) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--4582-- REDIR: 0x4a792d0 (libc.so.6:strspn) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--4582-- REDIR: 0x4a760d0 (libc.so.6:mempcpy) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--4582-- REDIR: 0x4a78d40 (libc.so.6:strncasecmp) redirected to 0x483d1c0 (_vgnU_ifunc_wrapper)
+--4582-- REDIR: 0x4b515f0 (libc.so.6:__strrchr_avx2) redirected to 0x484ed20 (rindex)
+--4582-- REDIR: 0x4a71640 (libc.so.6:malloc) redirected to 0x48467b0 (malloc)
+--4582-- REDIR: 0x4b4eda0 (libc.so.6:__strchrnul_avx2) redirected to 0x48537b0 (strchrnul)
+--4582-- REDIR: 0x4b4ca00 (libc.so.6:__memcpy_avx_unaligned_erms) redirected to 0x4852d60 (memmove)
+--4582-- REDIR: 0x4b4f740 (libc.so.6:__strlen_avx2) redirected to 0x484f220 (strlen)
+==4582== Conditional jump or move depends on uninitialised value(s)
+==4582==    at 0x10FA49: ft_gnl (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x1105CB: here_is_the_map (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x110A59: is_there_a_map_issue (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x10EAF4: main (in /home/ninja/CC/M2/so_long/so_long)
+==4582==  Uninitialised value was created by a stack allocation
+==4582==    at 0x10FA08: ft_gnl (in /home/ninja/CC/M2/so_long/so_long)
+==4582== 
+==4582== Conditional jump or move depends on uninitialised value(s)
+==4582==    at 0x10FAF3: ft_gnl (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x1105CB: here_is_the_map (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x110A59: is_there_a_map_issue (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x10EAF4: main (in /home/ninja/CC/M2/so_long/so_long)
+==4582==  Uninitialised value was created by a stack allocation
+==4582==    at 0x10FA08: ft_gnl (in /home/ninja/CC/M2/so_long/so_long)
+==4582== 
+--4582-- REDIR: 0x4a71d20 (libc.so.6:free) redirected to 0x4849820 (free)
+--4582-- REDIR: 0x4b4c9c0 (libc.so.6:__mempcpy_avx_unaligned_erms) redirected to 0x48538d0 (mempcpy)
+--4582-- REDIR: 0x4b50820 (libc.so.6:__strncmp_avx2) redirected to 0x484fab0 (strncmp)
+--4582-- REDIR: 0x4a72790 (libc.so.6:calloc) redirected to 0x484d8a0 (calloc)
+--4582-- REDIR: 0x4b4c9d0 (libc.so.6:__memcpy_chk_avx_unaligned_erms) redirected to 0x4853dd0 (__memcpy_chk)
+--4582-- REDIR: 0x4afbf90 (libc.so.6:__strcpy_chk) redirected to 0x4853830 (__strcpy_chk)
+--4582-- REDIR: 0x4b4eb60 (libc.so.6:__strchr_avx2) redirected to 0x484ef00 (index)
+--4582-- REDIR: 0x4b4c2a0 (libc.so.6:__memcmp_avx2_movbe) redirected to 0x4852480 (bcmp)
+--4582-- REDIR: 0x4b4d400 (libc.so.6:__memset_avx2_unaligned_erms) redirected to 0x4852c50 (memset)
+--4582-- REDIR: 0x4a72090 (libc.so.6:realloc) redirected to 0x484db00 (realloc)
+--4582-- REDIR: 0x4b50e80 (libc.so.6:__strncpy_avx2) redirected to 0x484f4f0 (strncpy)
+--4582-- REDIR: 0x4b4ef90 (libc.so.6:__strcmp_avx2) redirected to 0x4850360 (strcmp)
+==4582== Syscall param writev(vector[0]) points to uninitialised byte(s)
+==4582==    at 0x4AED864: writev (writev.c:26)
+==4582==    by 0x4BE4ACA: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==4582==    by 0x4BE4C4E: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==4582==    by 0x4BE5D7E: xcb_writev (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==4582==    by 0x48C80B8: _XSend (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==4582==    by 0x48CD148: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==4582==    by 0x48CD52B: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==4582==    by 0x111EF5: mlx_int_wait_first_expose (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x111C35: mlx_new_window (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x110D63: mlx_starter (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x10EB3F: main (in /home/ninja/CC/M2/so_long/so_long)
+==4582==  Address 0x4c43bec is 28 bytes inside a block of size 16,384 alloc'd
+==4582==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4582==    by 0x48B742D: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==4582==    by 0x1119E6: mlx_init (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x110C92: mlx_starter (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x10EB3F: main (in /home/ninja/CC/M2/so_long/so_long)
+==4582==  Uninitialised value was created by a stack allocation
+==4582==    at 0x111E00: mlx_int_anti_resize_win (in /home/ninja/CC/M2/so_long/so_long)
+==4582== 
+==4582== 
+==4582== HEAP SUMMARY:
+==4582==     in use at exit: 1,120 bytes in 10 blocks
+==4582==   total heap usage: 16,939 allocs, 16,929 frees, 1,861,783 bytes allocated
+==4582== 
+==4582== Searching for pointers to 10 not-freed blocks
+==4582== Checked 854,448 bytes
+==4582== 
+==4582== 88 bytes in 1 blocks are still reachable in loss record 1 of 10
+==4582==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4582==    by 0x11374B: mlx_int_new_xshm_image (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x113A90: mlx_new_image (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x112809: mlx_int_parse_xpm (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x112C23: mlx_xpm_file_to_image (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x10F62E: image_initializer (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x10EB70: main (in /home/ninja/CC/M2/so_long/so_long)
+==4582== 
+==4582== 88 bytes in 1 blocks are still reachable in loss record 2 of 10
+==4582==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4582==    by 0x11374B: mlx_int_new_xshm_image (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x113A90: mlx_new_image (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x112809: mlx_int_parse_xpm (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x112C23: mlx_xpm_file_to_image (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x10F650: image_initializer (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x10EB70: main (in /home/ninja/CC/M2/so_long/so_long)
+==4582== 
+==4582== 88 bytes in 1 blocks are still reachable in loss record 3 of 10
+==4582==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4582==    by 0x11374B: mlx_int_new_xshm_image (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x113A90: mlx_new_image (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x112809: mlx_int_parse_xpm (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x112C23: mlx_xpm_file_to_image (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x10F672: image_initializer (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x10EB70: main (in /home/ninja/CC/M2/so_long/so_long)
+==4582== 
+==4582== 88 bytes in 1 blocks are still reachable in loss record 4 of 10
+==4582==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4582==    by 0x11374B: mlx_int_new_xshm_image (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x113A90: mlx_new_image (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x112809: mlx_int_parse_xpm (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x112C23: mlx_xpm_file_to_image (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x10F694: image_initializer (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x10EB70: main (in /home/ninja/CC/M2/so_long/so_long)
+==4582== 
+==4582== 88 bytes in 1 blocks are still reachable in loss record 5 of 10
+==4582==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4582==    by 0x11374B: mlx_int_new_xshm_image (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x113A90: mlx_new_image (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x112809: mlx_int_parse_xpm (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x112C23: mlx_xpm_file_to_image (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x10F6B6: image_initializer (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x10EB70: main (in /home/ninja/CC/M2/so_long/so_long)
+==4582== 
+==4582== 136 bytes in 1 blocks are still reachable in loss record 6 of 10
+==4582==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4582==    by 0x48780A6: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==4582==    by 0x11377B: mlx_int_new_xshm_image (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x113A90: mlx_new_image (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x112809: mlx_int_parse_xpm (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x112C23: mlx_xpm_file_to_image (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x10F62E: image_initializer (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x10EB70: main (in /home/ninja/CC/M2/so_long/so_long)
+==4582== 
+==4582== 136 bytes in 1 blocks are still reachable in loss record 7 of 10
+==4582==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4582==    by 0x48780A6: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==4582==    by 0x11377B: mlx_int_new_xshm_image (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x113A90: mlx_new_image (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x112809: mlx_int_parse_xpm (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x112C23: mlx_xpm_file_to_image (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x10F650: image_initializer (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x10EB70: main (in /home/ninja/CC/M2/so_long/so_long)
+==4582== 
+==4582== 136 bytes in 1 blocks are still reachable in loss record 8 of 10
+==4582==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4582==    by 0x48780A6: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==4582==    by 0x11377B: mlx_int_new_xshm_image (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x113A90: mlx_new_image (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x112809: mlx_int_parse_xpm (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x112C23: mlx_xpm_file_to_image (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x10F672: image_initializer (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x10EB70: main (in /home/ninja/CC/M2/so_long/so_long)
+==4582== 
+==4582== 136 bytes in 1 blocks are still reachable in loss record 9 of 10
+==4582==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4582==    by 0x48780A6: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==4582==    by 0x11377B: mlx_int_new_xshm_image (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x113A90: mlx_new_image (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x112809: mlx_int_parse_xpm (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x112C23: mlx_xpm_file_to_image (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x10F694: image_initializer (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x10EB70: main (in /home/ninja/CC/M2/so_long/so_long)
+==4582== 
+==4582== 136 bytes in 1 blocks are still reachable in loss record 10 of 10
+==4582==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4582==    by 0x48780A6: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==4582==    by 0x11377B: mlx_int_new_xshm_image (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x113A90: mlx_new_image (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x112809: mlx_int_parse_xpm (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x112C23: mlx_xpm_file_to_image (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x10F6B6: image_initializer (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x10EB70: main (in /home/ninja/CC/M2/so_long/so_long)
+==4582== 
+==4582== LEAK SUMMARY:
+==4582==    definitely lost: 0 bytes in 0 blocks
+==4582==    indirectly lost: 0 bytes in 0 blocks
+==4582==      possibly lost: 0 bytes in 0 blocks
+==4582==    still reachable: 1,120 bytes in 10 blocks
+==4582==         suppressed: 0 bytes in 0 blocks
+==4582== 
+==4582== ERROR SUMMARY: 15 errors from 3 contexts (suppressed: 0 from 0)
+==4582== 
+==4582== 1 errors in context 1 of 3:
+==4582== Syscall param writev(vector[0]) points to uninitialised byte(s)
+==4582==    at 0x4AED864: writev (writev.c:26)
+==4582==    by 0x4BE4ACA: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==4582==    by 0x4BE4C4E: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==4582==    by 0x4BE5D7E: xcb_writev (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==4582==    by 0x48C80B8: _XSend (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==4582==    by 0x48CD148: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==4582==    by 0x48CD52B: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==4582==    by 0x111EF5: mlx_int_wait_first_expose (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x111C35: mlx_new_window (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x110D63: mlx_starter (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x10EB3F: main (in /home/ninja/CC/M2/so_long/so_long)
+==4582==  Address 0x4c43bec is 28 bytes inside a block of size 16,384 alloc'd
+==4582==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==4582==    by 0x48B742D: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==4582==    by 0x1119E6: mlx_init (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x110C92: mlx_starter (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x10EB3F: main (in /home/ninja/CC/M2/so_long/so_long)
+==4582==  Uninitialised value was created by a stack allocation
+==4582==    at 0x111E00: mlx_int_anti_resize_win (in /home/ninja/CC/M2/so_long/so_long)
+==4582== 
+==4582== 
+==4582== 6 errors in context 2 of 3:
+==4582== Conditional jump or move depends on uninitialised value(s)
+==4582==    at 0x10FAF3: ft_gnl (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x1105CB: here_is_the_map (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x110A59: is_there_a_map_issue (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x10EAF4: main (in /home/ninja/CC/M2/so_long/so_long)
+==4582==  Uninitialised value was created by a stack allocation
+==4582==    at 0x10FA08: ft_gnl (in /home/ninja/CC/M2/so_long/so_long)
+==4582== 
+==4582== 
+==4582== 8 errors in context 3 of 3:
+==4582== Conditional jump or move depends on uninitialised value(s)
+==4582==    at 0x10FA49: ft_gnl (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x1105CB: here_is_the_map (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x110A59: is_there_a_map_issue (in /home/ninja/CC/M2/so_long/so_long)
+==4582==    by 0x10EAF4: main (in /home/ninja/CC/M2/so_long/so_long)
+==4582==  Uninitialised value was created by a stack allocation
+==4582==    at 0x10FA08: ft_gnl (in /home/ninja/CC/M2/so_long/so_long)
+==4582== 
+==4582== ERROR SUMMARY: 15 errors from 3 contexts (suppressed: 0 from 0)

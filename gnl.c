@@ -14,7 +14,7 @@
 
 char	*get_till_nl(char *str)
 {
-	int	i;
+	int		i;
 	char	*res;
 
 	i = 0;
@@ -54,7 +54,7 @@ void	clear_till_nl(char str[])
 		str[i++] = '\0';
 	while (str[i])
 	{
-		str[j++] = str[i];	
+		str[j++] = str[i];
 		str[i++] = '\0';
 	}
 	str[j] = '\0';
@@ -64,9 +64,10 @@ char	*ft_gnl(int fd)
 {
 	static char	buffer[43];
 	char		*line;
-	int		rv;
+	int			rv;
 
 	buffer[42] = 0;
+	rv = 1;
 	if (!*buffer)
 		rv = read(fd, buffer, 42);
 	if (rv <= 0)

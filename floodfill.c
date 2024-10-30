@@ -30,10 +30,10 @@ int	chest_count(char **map, int height)
 	return (chest);
 }
 
-int	fill(char **map, int h, int w, int *flooded)
+int	fil(char **map, int h, int w, int *flooded)
 {
 	char	c;
-	int	p;
+	int		p;
 
 	c = (map[h][w] * (map[h][w] != 'E' && map[h][w] != 'P'));
 	p = 0;
@@ -78,12 +78,11 @@ int	flood(char **map, int height, int bo)
 		{
 			w = 0;
 			while (map[h][++w + 1])
-				if (map[h][w] != '1' && fill(map, h, w, f))
-					pte += (!pte);
-				else if (map[h][w] == 'C')
-					ptc = 0;
+			{
+				pte += (map[h][w] != '1' && fil(map, h, w, f));
+				ptc = (map[h][w] != 'C' * ptc);
+			}
 		}
 	}
-	printf("ptc = %d, pte = %d, cc = %d\n", ptc, pte, chest_count(map, height));
 	return (ptc * pte);
 }

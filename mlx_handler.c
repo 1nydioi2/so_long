@@ -18,7 +18,7 @@ void	mlx_handler(t_game *game)
 	//void	*image;
 
 	//image = mlx_new_image(game->mlx_dspl, 860, 1280);
-	//printf("mlx_handler\tgamex = %p, display = %p, window = %p\n", game, game->mlx_dspl, game->mlx_win);
+	printf("mlx_handler\tgamex = %p, display = %p, window = %p\n", game, game->mlx_dspl, game->mlx_win);
 	mlx_hook(game->mlx_win, 17, 0, &mlx_closing, game);
 	mlx_hook(game->mlx_win, 2, 1L<<0, &key_redirector, game);
 	mlx_loop(game->mlx_dspl);
@@ -51,6 +51,6 @@ int	mlx_starter(t_game *game)
 		perror("encountered an error while creating window : ");
 		return (1);
 	}
-	//printf("mlx_starter\tgamex = %p, display = %p, window = %p\n", game, game->mlx_dspl, game->mlx_win);
+	printf("mlx_starter\tgamex = %p, display = %p, window = %p\n", game, game->mlx_dspl, game->mlx_win);
 	return (0);
 }

@@ -56,23 +56,23 @@ void	mlx_refresh_player(t_game *game, int last_x, int last_y)
 		player_in_range_x = game->images.offset_x + (game->images.size * game->player.w);
 		last_x = game->images.offset_x + (game->images.size * last_x);
 	}
-	mlx_put_image_to_window(game->mlx_dspl, game->mlx_win, game->images.player_image, player_in_range_x, player_in_range_y);
-	mlx_put_image_to_window(game->mlx_dspl, game->mlx_win, game->images.ground_image, last_x, last_y); 
+	mlx_put_image_to_window(game->mlx_dspl, game->mlx_win, game->images.player, player_in_range_x, player_in_range_y);
+	mlx_put_image_to_window(game->mlx_dspl, game->mlx_win, game->images.ground, last_x, last_y); 
 	return ;
 }
 
 void	*wotp(char **map, int x, int y, t_game *game)
 {
 	if (map[y][x] == '0')
-		return (game->images.ground_image);
+		return (game->images.ground);
 	else if (map[y][x] == '1')
-		return (game->images.wall_image);
+		return (game->images.wall);
 	else if (map[y][x] == 'C')
-		return (game->images.collectable_image);
+		return (game->images.collectable);
 	else if (map[y][x] == 'P')
-		return (game->images.player_image);
+		return (game->images.player);
 	else
-		return (game->images.exit_image);
+		return (game->images.exit);
 }
 
 void	camera_range_init(t_game *game, int (*h)[3], int (*w)[3])
@@ -101,7 +101,6 @@ void	mlx_refresh_whole_frame(t_game *game)
 	int	lox;
 	int	loy;
 
-        printf("frame_refresh\tplayer_image = %p\n", game->images.player_image);
 	lox = game->images.offset_x;
 	loy = game->images.offset_y;
 	camera_range_init(game, &h, &w);
