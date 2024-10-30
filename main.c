@@ -6,7 +6,7 @@
 /*   By: nilamber <nilamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 21:44:39 by nilamber          #+#    #+#             */
-/*   Updated: 2024/10/26 01:54:33 by nilamber         ###   ########.fr       */
+/*   Updated: 2024/10/30 18:43:55 by nilamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int argc, char **argv)
 {
 	char	*map_name;
 	char	**map;
-	int	height;
+	int		height;
 	t_game	game;
 
 	if (argc != 2)
@@ -54,7 +54,6 @@ int	main(int argc, char **argv)
 	if (mlx_starter(&game))
 		return (map_liberator(map, height), 1);
 	image_initializer(&game);
-	printf("main\tgamex = %p, display = %p, window = %p\n", &game, game.mlx_dspl, game.mlx_win);
 	mlx_refresh_whole_frame(&game);
 	mlx_handler(&game);
 }

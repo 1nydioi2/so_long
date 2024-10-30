@@ -6,7 +6,7 @@
 /*   By: nilamber <nilamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 01:50:47 by nilamber          #+#    #+#             */
-/*   Updated: 2024/10/23 14:11:00 by nilamber         ###   ########.fr       */
+/*   Updated: 2024/10/30 18:42:43 by nilamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int	fline_count(char *name)
 {
-	int	lc[2];
+	int		lc[2];
 	char	buffer[42];
-	int	i;
-	int	rv;
-	int	fd;
+	int		i;
+	int		rv;
+	int		fd;
 
 	fd = open(name, O_RDONLY);
 	if (fd < 1)
@@ -29,10 +29,12 @@ int	fline_count(char *name)
 	while (rv > 0)
 	{
 		i = 0;
-		while ((i < rv && (lc[1] -= ((lc[1]) * (buffer[i] != '\n'))))
-					|| i < rv)
+		while (i < rv)
+		{
+			lc[1] -= ((lc[1]) * (buffer[i] != '\n'));
 			if (buffer[i++] == '\n' && (++lc[0] && lc[1]++))
 				return (1);
+		}
 		rv = read(fd, buffer, 42);
 	}
 	close(fd);
@@ -63,8 +65,8 @@ void	map_liberator(char **map, int height)
 char	**arrstr_cpy(char **map, int height)
 {
 	char	**map_cpy;
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	i = 0;
 	map_cpy = NULL;
@@ -88,8 +90,8 @@ char	**arrstr_cpy(char **map, int height)
 char	*ft_strjoin(char *start, char *end)
 {
 	char	*res;
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
@@ -103,6 +105,6 @@ char	*ft_strjoin(char *start, char *end)
 		res[j++] = end[i++];
 	res[j] = '\0';
 	free(start);
-	free(end);	
+	free(end);
 	return (res);
 }

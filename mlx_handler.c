@@ -6,7 +6,7 @@
 /*   By: nilamber <nilamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 15:32:45 by nilamber          #+#    #+#             */
-/*   Updated: 2024/10/27 23:59:32 by nilamber         ###   ########.fr       */
+/*   Updated: 2024/10/30 19:23:43 by nilamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,15 @@ void	mlx_handler(t_game *game)
 	mlx_loop(game->mlx_dspl);
 }
 
+
 int	mlx_closing(t_game *game)
 {
 	mlx_destroy_window(game->mlx_dspl, game->mlx_win);
+	mlx_destroy_image(game->mlx_dspl, game->images.player);
+	mlx_destroy_image(game->mlx_dspl, game->images.exit);
+	mlx_destroy_image(game->mlx_dspl, game->images.ground);
+	mlx_destroy_image(game->mlx_dspl, game->images.wall);
+	mlx_destroy_image(game->mlx_dspl, game->images.collectable);
 	map_liberator(game->map, game->m_height);
 	mlx_destroy_display(game->mlx_dspl);
 	print_steps(game->player.steps);
