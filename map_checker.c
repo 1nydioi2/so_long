@@ -75,7 +75,7 @@ int	is_the_map_rectangular(char **map, int height)
 	while (++i < height && rectangle)
 	{
 		j = -1;
-		if (i == (height - 1) || (!i))
+		if ((!i) || i == (height - 1))
 			while (map[i][++j] && rectangle)
 				rectangle = (map[i][j] == '1' && j < width);
 		else
@@ -83,7 +83,7 @@ int	is_the_map_rectangular(char **map, int height)
 			rectangle = (map[i][++j] == '1');
 			while (map[i][j] && rectangle)
 				j++;
-			rectangle = (map[i][j - 1] == '1' && (j - 1) < width);
+			rectangle = ((rectangle && j) && ((j - 1) < width && map[i][j - 1] == '1'));
 		}
 	}
 	return (rectangle);
