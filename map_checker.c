@@ -6,7 +6,7 @@
 /*   By: nilamber <nilamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 22:19:26 by nilamber          #+#    #+#             */
-/*   Updated: 2024/10/30 19:30:23 by nilamber         ###   ########.fr       */
+/*   Updated: 2024/10/30 20:09:32 by nilamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,15 +110,15 @@ int	is_there_a_map_issue(char *name, char ***map, int height)
 	map_fd = open(name, O_RDONLY);
 	here_is_the_map(map_fd, map, height);
 	if (map_fd <= 0 && ++issue)
-		perror("encountered an error while trying to open the map : ");
+		perror("Error\nencountered an error while trying to open the map : ");
 	else if (map == NULL && ++issue)
-		perror("encountered an error while allocating the map : ");
+		perror("Error\nencountered an error while allocating the map : ");
 	else if (!is_every_char_compliant(*map, height) && ++issue)
-		write(1, "map is non-compilant\n", 21);
+		write(1, "Error\nsome map characters are non-compilant\n", 44);
 	else if (!is_the_map_rectangular(*map, height) && ++issue)
-		write(1, "map is not rectangular\n", 23);
+		write(1, "Error\nmap is not rectangular\n", 23);
 	else if (!is_the_map_doable(*map, height) && ++issue)
-		write(1, "the player can't finish the game on this map\n", 45);
+		write(1, "Error\nthe player can't finish the game on this map\n", 51);
 	close(map_fd);
 	if (map != NULL && issue)
 		map_liberator(*map, height);

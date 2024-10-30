@@ -6,7 +6,7 @@
 /*   By: nilamber <nilamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 21:44:39 by nilamber          #+#    #+#             */
-/*   Updated: 2024/10/30 18:43:55 by nilamber         ###   ########.fr       */
+/*   Updated: 2024/10/30 20:14:04 by nilamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,15 @@ int	main(int argc, char **argv)
 	t_game	game;
 
 	if (argc != 2)
-		return (1);
+		return (write(1, "Error\nwrong argument account\n", 29));
 	map_name = argv[1];
 	if (!is_extension_okay(map_name))
-		return (1);
+		return (write(1, "Error\nmap extension is not .ber\n", 32));
 	height = fline_count(map_name);
-	if (height < 3)
-		return (1);
+	if (height == -1)
+		return (write(1, "Error\ncouldn't open the map\n", 28));
 	if (is_there_a_map_issue(map_name, &map, height))
 		return (1);
-	printf("map all good\n");
 	game_initializer(&game, map, height);
 	if (mlx_starter(&game))
 		return (map_liberator(map, height), 1);

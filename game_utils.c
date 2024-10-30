@@ -6,7 +6,7 @@
 /*   By: nilamber <nilamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 15:56:42 by nilamber          #+#    #+#             */
-/*   Updated: 2024/10/28 01:45:23 by nilamber         ###   ########.fr       */
+/*   Updated: 2024/10/30 20:17:13 by nilamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ void	image_initializer(t_game *game)
 		(game->mlx_dspl, "sprites/collect.xpm", &width, &height);
 	game->images = images;
 	image_pos_init(game);
-	printf("image width = %d, height = %d\n", width, height);
 }
 
 void	game_initializer(t_game *game, char **map, int height)
