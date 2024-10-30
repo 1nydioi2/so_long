@@ -47,6 +47,8 @@ int	main(int argc, char **argv)
 	height = fline_count(map_name);
 	if (height == -1)
 		return (write(1, "Error\ncouldn't open the map\n", 28));
+if (height < 3)
+return (write(1, "Error\nmap is not enough high\n", 27));
 	if (is_there_a_map_issue(map_name, &map, height))
 		return (1);
 	game_initializer(&game, map, height);
