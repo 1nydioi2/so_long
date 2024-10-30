@@ -6,7 +6,7 @@
 /*   By: nilamber <nilamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 01:12:54 by nilamber          #+#    #+#             */
-/*   Updated: 2024/10/28 02:16:28 by nilamber         ###   ########.fr       */
+/*   Updated: 2024/10/30 19:58:49 by nilamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,31 +33,15 @@ int	wall_in_range(t_game *game)
 
 void	mlx_refresh_player(t_game *game, int last_x, int last_y)
 {
-	int	player_in_range_x;
-	int	player_in_range_y;
+	int	plr_r_x;
+	int	plr_r_y;
 
-	if (game->player.h > (game->m_height / 2))
-	{
-		player_in_range_y = game->images.offset_y + (game->images.size * (game->images.range_y - (game->m_height - game->player.h)));
-		last_y = game->images.offset_y + (game->images.size * (game->images.range_y - (game->m_height - last_y)));
-	}
-	else
-	{
-		player_in_range_y = game->images.offset_y + (game->images.size * game->player.h);
-		last_y = game->images.offset_y + (game->images.size * last_y);
-	}	
-	if (game->player.w > (game->m_width / 2))
-	{
-		player_in_range_x = game->images.offset_x + (game->images.size * (game->images.range_x - (game->m_width - game->player.w)));
-		last_x = game->images.offset_x + (game->images.size * (game->images.range_x - (game->m_width - last_x)));
-	}
-	else
-	{
-		player_in_range_x = game->images.offset_x + (game->images.size * game->player.w);
-		last_x = game->images.offset_x + (game->images.size * last_x);
-	}
-	mlx_put_image_to_window(game->mlx_dspl, game->mlx_win, game->images.player, player_in_range_x, player_in_range_y);
-	mlx_put_image_to_window(game->mlx_dspl, game->mlx_win, game->images.ground, last_x, last_y); 
+	mlx_player_refresh_y(game, &last_y, &plr_r_y);
+	mlx_player_refresh_x(game, &last_x, &plr_r_x);
+	mlx_put_image_to_window
+		(game->mlx_dspl, game->mlx_win, game->images.player, plr_r_x, plr_r_y);
+	mlx_put_image_to_window
+		(game->mlx_dspl, game->mlx_win, game->images.ground, last_x, last_y);
 	return ;
 }
 
@@ -111,7 +95,8 @@ void	mlx_refresh_whole_frame(t_game *game)
 		w[2] = w[0];
 		while (w[2] < w[1])
 		{
-			mlx_put_image_to_window(game->mlx_dspl, game->mlx_win, wotp(game->map, w[2], h[2], game), lox, loy);
+			mlx_put_image_to_window(game->mlx_dspl, game->mlx_win,
+				wotp(game->map, w[2], h[2], game), lox, loy);
 			lox += game->images.size;
 			w[2]++;
 		}

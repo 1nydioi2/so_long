@@ -6,7 +6,7 @@
 /*   By: nilamber <nilamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 22:19:26 by nilamber          #+#    #+#             */
-/*   Updated: 2024/10/25 01:14:06 by nilamber         ###   ########.fr       */
+/*   Updated: 2024/10/30 19:30:23 by nilamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	here_is_the_map(int fd, char ***map, int height)
 	while (++i < height)
 	{
 		(*map)[i] = ft_gnl(fd);
-		printf("height = %d strlen = %d, map[%d] = %s\n", height, ft_strlen((*map)[i]), i, (*map)[i]);
 		if ((*map)[i] == NULL)
 		{
 			map_liberator((*map), i + 1);
@@ -34,28 +33,27 @@ void	here_is_the_map(int fd, char ***map, int height)
 
 int	is_every_char_compliant(char **map, int height)
 {
-	int	i;
-	int	j;
+	int	i[2];
 	int	exit;
 	int	chest;
 	int	player;
 
-	i = -1;
+	i[0] = -1;
 	player = 0;
 	exit = 0;
 	chest = 0;
-	while (++i < height && (player < 2 && exit < 2))
+	while (++i[0] < height && (player < 2 && exit < 2))
 	{
-		j = -1;
-		while (map[i][++j] && (player < 2 && exit < 2))
+		i[1] = -1;
+		while (map[i[0]][++i[1]] && (player < 2 && exit < 2))
 		{
-			if (map[i][j] == 'C')
+			if (map[i[0]][i[1]] == 'C')
 				chest++;
-			else if (map[i][j] == 'P')
+			else if (map[i[0]][i[1]] == 'P')
 				player++;
-			else if (map[i][j] == 'E')
+			else if (map[i[0]][i[1]] == 'E')
 				exit++;
-			else if (map[i][j] != '0' && map[i][j] != '1')
+			else if (map[i[0]][i[1]] != '0' && map[i[0]][i[1]] != '1')
 				return (0);
 		}
 	}
@@ -83,7 +81,8 @@ int	is_the_map_rectangular(char **map, int height)
 			rectangle = (map[i][++j] == '1');
 			while (map[i][j] && rectangle)
 				j++;
-			rectangle = ((rectangle && j) && ((j - 1) < width && map[i][j - 1] == '1'));
+			rectangle = ((rectangle && j) && ((j - 1)
+						< width && map[i][j - 1] == '1'));
 		}
 	}
 	return (rectangle);
@@ -91,8 +90,8 @@ int	is_the_map_rectangular(char **map, int height)
 
 int	is_the_map_doable(char **map, int height)
 {
-	int	res;
-	int	bo;
+	int		res;
+	int		bo;
 	char	**map_cpy;
 
 	bo = 0;
@@ -103,7 +102,6 @@ int	is_the_map_doable(char **map, int height)
 }
 
 int	is_there_a_map_issue(char *name, char ***map, int height)
-	
 {
 	int	map_fd;
 	int	issue;

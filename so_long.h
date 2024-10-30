@@ -6,7 +6,7 @@
 /*   By: nilamber <nilamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 01:08:12 by nilamber          #+#    #+#             */
-/*   Updated: 2024/10/28 01:46:39 by nilamber         ###   ########.fr       */
+/*   Updated: 2024/10/30 19:55:12 by nilamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,6 @@ int		key_redirector(int keynum, t_game *game);
 void	mlx_refresh_whole_frame(t_game *game);
 void	mlx_refresh_player(t_game *game, int last_x, int last_y);
 int		wall_in_range(t_game *game);
+void	mlx_player_refresh_y(t_game *game, int *last_y, int *plr_r_y);
+void	mlx_player_refresh_x(t_game *game, int *last_x, int *plr_r_x);
 #endif
