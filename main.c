@@ -19,15 +19,17 @@ int	is_extension_okay(char *str)
 	i = 0;
 	while (str[i])
 		i++;
-	if (i < 5)
+	if (i < 4)
 		return (0);
-	if (i >= 0 && str[--i] != 'r')
+	if (str[--i] != 'r')
 		return (0);
-	if (i >= 0 && str[--i] != 'e')
+	if (str[--i] != 'e')
 		return (0);
-	if (i >= 0 && str[--i] != 'b')
+	if (str[--i] != 'b')
 		return (0);
-	if (i >= 0 && str[--i] != '.')
+	if (str[--i] != '.')
+		return (0);
+	if (str[--i] == '/')
 		return (0);
 	return (1);
 }
@@ -47,8 +49,8 @@ int	main(int argc, char **argv)
 	height = fline_count(map_name);
 	if (height == -1)
 		return (write(1, "Error\ncouldn't open the map\n", 28));
-if (height < 3)
-return (write(1, "Error\nmap is not enough high\n", 27));
+	if (height < 3)
+		return (write(1, "Error\nmap is not big enough\n", 28));
 	if (is_there_a_map_issue(map_name, &map, height))
 		return (1);
 	game_initializer(&game, map, height);

@@ -80,7 +80,7 @@ int	flood(char **map, int height, int bo)
 			while (map[h][++w + 1])
 			{
 				pte += (map[h][w] != '1' && fil(map, h, w, f));
-				ptc = (map[h][w] != 'C' * ptc);
+				ptc = ((map[h][w] != 'C') * ptc);
 			}
 		}
 	}

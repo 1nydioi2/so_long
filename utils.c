@@ -15,7 +15,7 @@
 int	fline_count(char *name)
 {
 	int		lc[2];
-	char	buffer[42];
+	char	buff[42];
 	int		i;
 	int		rv;
 	int		fd;
@@ -25,17 +25,16 @@ int	fline_count(char *name)
 		return (-1);
 	lc[0] = 0;
 	lc[1] = 0;
-	rv = read(fd, buffer, 42);
+	rv = read(fd, buff, 42);
 	while (rv > 0)
 	{
 		i = 0;
 		while (i < rv)
 		{
-			lc[1] -= ((lc[1]) * (buffer[i] != '\n'));
-			if (buffer[i++] == '\n' && (++lc[0] && lc[1]++))
-				return (1);
+			lc[0] += ((buff[i] && buff[i] != '\n') && (!lc[1]++));
+			lc[1] = (buff[i++] != '\n');
 		}
-		rv = read(fd, buffer, 42);
+		rv = read(fd, buff, 42);
 	}
 	close(fd);
 	return (lc[0]);

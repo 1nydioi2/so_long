@@ -12,13 +12,13 @@
 
 #include "so_long.h"
 
-void	here_is_the_map(int fd, char ***map, int height)
+int	here_is_the_map(int fd, char ***map, int height)
 {
 	int	i;
 
 	*map = malloc(sizeof(char *) * height);
 	if (*map == NULL)
-		return ;
+		return (1);
 	i = -1;
 	while (++i < height)
 	{
@@ -26,9 +26,11 @@ void	here_is_the_map(int fd, char ***map, int height)
 		if ((*map)[i] == NULL)
 		{
 			map_liberator((*map), i + 1);
-			return ;
+			write(1, "Error\nmap creation failed\n", 27);
+			return (1);
 		}
 	}
+	return (0);
 }
 
 int	is_every_char_compliant(char **map, int height)
@@ -57,7 +59,7 @@ int	is_every_char_compliant(char **map, int height)
 				return (0);
 		}
 	}
-	return (((chest) + (player == 1) + (exit == 1)) / 3);
+	return ((chest) && ((player == 1) && (exit == 1)));
 }
 
 int	is_the_map_rectangular(char **map, int height)
@@ -70,6 +72,7 @@ int	is_the_map_rectangular(char **map, int height)
 	i = -1;
 	width = ft_strlen(map[0]);
 	rectangle = (width == ft_strlen(map[height - 1]));
+	j = -1;
 	while (++i < height && rectangle)
 	{
 		j = -1;
@@ -81,8 +84,8 @@ int	is_the_map_rectangular(char **map, int height)
 			rectangle = (map[i][++j] == '1');
 			while (map[i][j] && rectangle)
 				j++;
-			rectangle = ((rectangle && j) && (j)
-						== width && map[i][j - 1] == '1'));
+			rectangle = ((rectangle && j) && (j == width
+						&& map[i][j - 1] == '1'));
 		}
 	}
 	return (rectangle);
@@ -108,15 +111,16 @@ int	is_there_a_map_issue(char *name, char ***map, int height)
 
 	issue = 0;
 	map_fd = open(name, O_RDONLY);
-	here_is_the_map(map_fd, map, height);
+	if (here_is_the_map(map_fd, map, height))
+		return (1);
 	if (map_fd <= 0 && ++issue)
 		perror("Error\nencountered an error while trying to open the map : ");
 	else if (map == NULL && ++issue)
 		perror("Error\nencountered an error while allocating the map : ");
-	else if (!is_every_char_compliant(*map, height) && ++issue)
-		write(1, "Error\nsome map characters are non-compilant\n", 44);
 	else if (!is_the_map_rectangular(*map, height) && ++issue)
 		write(1, "Error\nmap is not rectangular\n", 30);
+	else if (!is_every_char_compliant(*map, height) && ++issue)
+		write(1, "Error\nsome map characters are non-compilant\n", 44);
 	else if (!is_the_map_doable(*map, height) && ++issue)
 		write(1, "Error\nthe player can't finish the game on this map\n", 51);
 	close(map_fd);

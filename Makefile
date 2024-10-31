@@ -14,7 +14,9 @@ OBJECTS = $(SOURCES:.c=.o)
 
 COMPILER = cc
 
-COMPILATION_FLAGS = -Wall -Wextra -Werror 
+FSANITIZE_G3 = -fsanitize=address -g3
+
+COMPILATION_FLAGS = -Wall -Wextra -Werror $(FSANITIZE_G3)
 
 MLX_LIBRARY_FLAGS = -Lmlx -lmlx -lXext -lX11 -lm
 
