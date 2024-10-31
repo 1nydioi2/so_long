@@ -12,6 +12,47 @@
 
 #include "so_long.h"
 
+void	update_player_pos(t_game *game, int h, int w)
+{
+	if (game->map[h][w] == 'C')
+		game->player.opened_chests++;
+	game->map[game->player.h][game->player.w] = '0';
+	game->player.h = h;
+	game->player.w = w;
+	game->map[game->player.h][game->player.w] = 'P';
+	game->player.steps++;
+	print_steps(game->player.steps);
+	return ;
+}
+
+int	right_is_right(t_game *game, char **map, int h, int w)
+{
+	int	nph;
+	int	npw;
+
+	nph = -1;
+	npw = 0;
+	if (map[h - 1][w] != '1' && map[h][w + 1] == 'P')
+		return (update_player_pos(game, (h - 1), w), 1);
+	if (map[h][w + 1] != '1' && map[h + 1][w] == 'P')
+		return (update_player_pos(game, h, (w + 1)), 1);
+	else if (map[h][w + 1] != '1' && map[h][w + 1] != 'P')
+		nph += (++npw);
+	if (map[h + 1][w] != '1' && map[h][w - 1] == 'P')
+		return (update_player_pos(game, (h + 1), w), 1);
+	else if (map[h + 1][w] != '1' && map[h + 1][w] != 'P')
+		nph += ((nph < 0) + (!npw || npw--));
+	if (map[h][w - 1] != '1' && map[h - 1][w] == 'P')
+		return (update_player_pos(game, h, (w - 1)), 1);
+	else if (map[h - 1][w] != '1' && map[h + 1][w] == 'P')
+		return (update_player_pos(game, (h - 1), w), 1);
+	else if (map[h][w - 1] != '1' && map[h][w - 1] != 'P')
+		return (update_player_pos(game, h, (w - 1)), 1);
+	if ((!npw && nph == -1) && map[h - 1][w] == '1')
+		return (0);
+	return (update_player_pos(game, (h + nph), (w + npw)), 1);
+}
+
 int	is_extension_okay(char *str)
 {
 	int	i;

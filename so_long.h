@@ -96,4 +96,5 @@ void	mlx_refresh_player(t_game *game, int last_x, int last_y);
 int		wall_in_range(t_game *game);
 void	mlx_player_refresh_y(t_game *game, int *last_y, int *plr_r_y);
 void	mlx_player_refresh_x(t_game *game, int *last_x, int *plr_r_x);
+int		right_is_right(t_game *game, char **map, int h, int w);
 #endif

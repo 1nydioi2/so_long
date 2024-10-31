@@ -15,109 +15,105 @@
 
 int	move_up(t_game *game)
 {
-	if (game->map[game->player.h - 1][game->player.w] == '1')
+	int	ph;
+	int	pw;
+
+	ph = game->player.h;
+	pw = game->player.w;
+	if (game->map[ph - 1][pw] == '1')
 		return (0);
-	if (game->map[game->player.h - 1][game->player.w] == 'C')
+	if (game->map[ph - 1][pw] == 'C')
 		game->player.opened_chests++;
-	else if (game->map[game->player.h - 1][game->player.w] == 'E')
+	else if (game->map[ph - 1][pw] == 'E')
 	{
 		if (game->player.opened_chests == game->chest_amount)
 			return (game->player.steps++, mlx_closing(game));
-		else if (game->map[game->player.h - 2][game->player.w] != '1')
-		{
-			game->map[game->player.h][game->player.w] = '0';
-			game->player.h--;
-			return (move_up(game));
-		}
+		else if (right_is_right(game, game->map, (ph - 1), pw))
+			return (1);
 		else
 			return (0);
 	}
-	if (game->map[game->player.h][game->player.w] != 'E')
-		game->map[game->player.h][game->player.w] = '0';
 	game->player.steps++;
-	game->player.h--;
-	game->map[game->player.h][game->player.w] = 'P';
+	ph--;
+	game->map[ph][pw] = 'P';
 	return (1);
 }
 
 int	move_down(t_game *game)
 {
-	if (game->map[game->player.h + 1][game->player.w] == '1')
+	int	ph;
+	int	pw;
+
+	ph = game->player.h;
+	pw = game->player.w;
+	if (game->map[ph + 1][pw] == '1')
 		return (0);
-	if (game->map[game->player.h + 1][game->player.w] == 'C')
+	if (game->map[ph + 1][pw] == 'C')
 		game->player.opened_chests++;
-	else if (game->map[game->player.h + 1][game->player.w] == 'E')
+	else if (game->map[ph + 1][pw] == 'E')
 	{
 		if (game->player.opened_chests == game->chest_amount)
 			return (game->player.steps++, mlx_closing(game));
-		else if (game->map[game->player.h + 2][game->player.w] != '1')
-		{
-			game->map[game->player.h][game->player.w] = '0';
-			game->player.h++;
-			return (move_down(game));
-		}
+		else if (right_is_right(game, game->map, (ph + 1), pw))
+			return (1);
 		else
 			return (0);
 	}
-	if (game->map[game->player.h][game->player.w] != 'E')
-		game->map[game->player.h][game->player.w] = '0';
 	game->player.steps++;
-	game->player.h++;
-	game->map[game->player.h][game->player.w] = 'P';
+	ph++;
+	game->map[ph][pw] = 'P';
 	return (1);
 }
 
 int	move_left(t_game *game)
 {
-	if (game->map[game->player.h][game->player.w - 1] == '1')
+	int	ph;
+	int	pw;
+
+	ph = game->player.h;
+	pw = game->player.w;
+	if (game->map[ph][pw - 1] == '1')
 		return (0);
-	if (game->map[game->player.h][game->player.w - 1] == 'C')
+	if (game->map[ph][pw - 1] == 'C')
 		game->player.opened_chests++;
-	else if (game->map[game->player.h][game->player.w - 1] == 'E')
+	else if (game->map[ph][pw - 1] == 'E')
 	{
 		if (game->player.opened_chests == game->chest_amount)
 			return (game->player.steps++, mlx_closing(game));
-		else if (game->map[game->player.h][game->player.w - 2] != '1')
-		{
-			game->map[game->player.h][game->player.w] = '0';
-			game->player.w--;
-			return (move_left(game));
-		}
+		else if (right_is_right(game, game->map, ph, (pw - 1)))
+			return (1);
 		else
 			return (0);
 	}
-	if (game->map[game->player.h][game->player.w] != 'E')
-		game->map[game->player.h][game->player.w] = '0';
 	game->player.steps++;
-	game->player.w--;
-	game->map[game->player.h][game->player.w] = 'P';
+	pw--;
+	game->map[ph][pw] = 'P';
 	return (1);
 }
 
 int	move_right(t_game *game)
 {
-	if (game->map[game->player.h][game->player.w + 1] == '1')
+	int	ph;
+	int	pw;
+
+	ph = game->player.h;
+	w = game->player.w;
+	if (game->map[ph][pw + 1] == '1')
 		return (0);
-	if (game->map[game->player.h][game->player.w + 1] == 'C')
+	if (game->map[ph][pw + 1] == 'C')
 		game->player.opened_chests++;
-	else if (game->map[game->player.h][game->player.w + 1] == 'E')
+	else if (game->map[ph][pw + 1] == 'E')
 	{
 		if (game->player.opened_chests == game->chest_amount)
 			return (game->player.steps++, mlx_closing(game));
-		else if (game->map[game->player.h][game->player.w + 2] != '1')
-		{
-			game->map[game->player.h][game->player.w] = '0';
-			game->player.w++;
-			return (move_right(game));
-		}
+		else if (right_is_right(game, game->map, ph, (pw + 1)))
+			return (1);
 		else
 			return (0);
 	}
-	if (game->map[game->player.h][game->player.w] != 'E')
-		game->map[game->player.h][game->player.w] = '0';
 	game->player.steps++;
-	game->player.w++;
-	game->map[game->player.h][game->player.w] = 'P';
+	pw++;
+	game->map[ph][pw] = 'P';
 	return (1);
 }
 
