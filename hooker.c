@@ -33,6 +33,8 @@ int	move_up(t_game *game)
 		else
 			return (0);
 	}
+	game->map[ph][pw] = '0';
+	game->player.h--;
 	game->player.steps++;
 	ph--;
 	game->map[ph][pw] = 'P';
@@ -59,6 +61,8 @@ int	move_down(t_game *game)
 		else
 			return (0);
 	}
+	game->map[ph][pw] = '0';
+	game->player.h++;
 	game->player.steps++;
 	ph++;
 	game->map[ph][pw] = 'P';
@@ -85,6 +89,8 @@ int	move_left(t_game *game)
 		else
 			return (0);
 	}
+	game->map[ph][pw] = '0';
+	game->player.w--;
 	game->player.steps++;
 	pw--;
 	game->map[ph][pw] = 'P';
@@ -97,7 +103,7 @@ int	move_right(t_game *game)
 	int	pw;
 
 	ph = game->player.h;
-	w = game->player.w;
+	pw = game->player.w;
 	if (game->map[ph][pw + 1] == '1')
 		return (0);
 	if (game->map[ph][pw + 1] == 'C')
@@ -111,6 +117,8 @@ int	move_right(t_game *game)
 		else
 			return (0);
 	}
+	game->map[ph][pw] = '0';
+	game->player.w++;
 	game->player.steps++;
 	pw++;
 	game->map[ph][pw] = 'P';
