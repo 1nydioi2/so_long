@@ -84,8 +84,10 @@ void	image_initializer(t_game *game)
 		(game->mlx_dspl, "sprites/player.xpm", &width, &height);
 	images.wall = mlx_xpm_file_to_image
 		(game->mlx_dspl, "sprites/wall.xpm", &width, &height);
-	images.exit = mlx_xpm_file_to_image
-		(game->mlx_dspl, "sprites/exit.xpm", &width, &height);
+	images.exit_closed = mlx_xpm_file_to_image
+		(game->mlx_dspl, "sprites/exit_closed.xpm", &width, &height);
+	images.exit_opened = mlx_xpm_file_to_image
+		(game->mlx_dspl, "sprites/exit_opened.xpm", &width, &height);
 	images.ground = mlx_xpm_file_to_image
 		(game->mlx_dspl, "sprites/ground.xpm", &width, &height);
 	images.collectable = mlx_xpm_file_to_image

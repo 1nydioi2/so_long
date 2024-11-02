@@ -48,7 +48,8 @@ typedef struct s_image
 	int		size;
 	void	*player;
 	void	*wall;
-	void	*exit;
+	void	*exit_closed;
+	void	*exit_opened;
 	void	*ground;
 	void	*collectable;
 }	t_image;

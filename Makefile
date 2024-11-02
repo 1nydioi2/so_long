@@ -16,7 +16,7 @@ COMPILER = cc
 
 FSANITIZE_G3 = -fsanitize=address -g3
 
-COMPILATION_FLAGS = -Wall -Wextra -Werror $(FSANITIZE_G3)
+COMPILATION_FLAGS = -Wall -Wextra -Werror
 
 MLX_LIBRARY_FLAGS = -Lmlx -lmlx -lXext -lX11 -lm
 

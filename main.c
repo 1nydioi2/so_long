@@ -22,6 +22,7 @@ void	update_player_pos(t_game *game, int h, int w)
 	game->map[game->player.h][game->player.w] = 'P';
 	game->player.steps++;
 	print_steps(game->player.steps);
+	game->player.steps++;
 	return ;
 }
 

@@ -55,8 +55,10 @@ void	*wotp(char **map, int x, int y, t_game *game)
 		return (game->images.collectable);
 	else if (map[y][x] == 'P')
 		return (game->images.player);
+	else if (game->player.opened_chests == game->chest_amount)
+		return (game->images.exit_opened);
 	else
-		return (game->images.exit);
+		return (game->images.exit_closed);
 }
 
 void	camera_range_init(t_game *game, int (*h)[3], int (*w)[3])

@@ -56,7 +56,8 @@ int	mlx_closing(t_game *game)
 {
 	mlx_destroy_window(game->mlx_dspl, game->mlx_win);
 	mlx_destroy_image(game->mlx_dspl, game->images.player);
-	mlx_destroy_image(game->mlx_dspl, game->images.exit);
+	mlx_destroy_image(game->mlx_dspl, game->images.exit_closed);
+	mlx_destroy_image(game->mlx_dspl, game->images.exit_opened);
 	mlx_destroy_image(game->mlx_dspl, game->images.ground);
 	mlx_destroy_image(game->mlx_dspl, game->images.wall);
 	mlx_destroy_image(game->mlx_dspl, game->images.collectable);
@@ -69,12 +70,16 @@ int	mlx_closing(t_game *game)
 
 int	mlx_starter(t_game *game)
 {
+	game->mlx_dspl = NULL;
 	game->mlx_dspl = mlx_init();
 	if (game->mlx_dspl == NULL)
 	{
 		perror("Error\nencountered an error while creating display : ");
 		return (1);
 	}
+	game->s_width = 0;
+	game->s_height = 0;
+	game->mlx_win = NULL;
 	mlx_get_screen_size(game->mlx_dspl, &game->s_width, &game->s_height);
 	game->mlx_win = mlx_new_window
 		(game->mlx_dspl, game->s_width, game->s_height, "so_long");
